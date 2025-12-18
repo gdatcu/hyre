@@ -31,7 +31,7 @@ Hyre is built with pure web technologies and requires no complex installation.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/yourusername/hyre.git](https://github.com/yourusername/hyre.git)
+    git clone https://github.com/yourusername/hyre.git
     ```
 2.  **Run the project:**
     Open `index.html` in your browser.
