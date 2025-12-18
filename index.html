@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyre | Senior Grade Portfolio Builder</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%236366f1'></rect><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Plus Jakarta Sans, sans-serif' font-size='60' font-weight='800' fill='white'>H</text></svg>">
+    
+    <link rel="icon" href="">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="style.css">
@@ -45,17 +47,17 @@
 
                 <div id="tab-stack" class="tab-pane">
                     <div id="stack-editor-list"></div>
-                    <button onclick="addStackField()" class="add-item-btn">+ Adaugă Tehnologie</button>
+                    <button onclick="addStackField()" class="add-item-btn">+ Tehnologie</button>
                 </div>
 
                 <div id="tab-experience" class="tab-pane">
                     <div id="exp-editor-list"></div>
-                    <button onclick="addExperienceField()" class="add-item-btn">+ Adaugă Etapă</button>
+                    <button onclick="addExperienceField()" class="add-item-btn">+ Etapă</button>
                 </div>
 
                 <div id="tab-projects" class="tab-pane">
                     <div id="project-editor-list"></div>
-                    <button onclick="addProjectField()" class="add-item-btn">+ Adaugă Proiect</button>
+                    <button onclick="addProjectField()" class="add-item-btn">+ Proiect</button>
                 </div>
 
                 <div id="tab-design" class="tab-pane">
@@ -69,10 +71,10 @@
 
             <div class="editor-footer">
                 <button onclick="exportHTML()" class="export-btn">
-                    <i data-lucide="download"></i> Exportă Site-ul Hyre
+                    <i data-lucide="download"></i> Exportă index.html
                 </button>
                 <button onclick="resetData()" class="btn-small" style="margin-top: 12px; width: 100%; border: none; background: #fee2e2; color: #b91c1c; cursor: pointer; padding: 10px; border-radius: 8px; font-weight: 700;">
-                    Resetează Tot Progresul
+                    Resetează Progresul
                 </button>
             </div>
         </div>
@@ -91,9 +93,9 @@
 
     <main class="container">
         <section id="hero">
-            <div class="badge" id="display-hero-badge">Disponibil pentru proiecte noi</div>
-            <h1 id="display-hero-title">Încărcare...</h1>
-            <p id="display-hero-desc">Se încarcă datele...</p>
+            <div class="badge" id="display-hero-badge">Incarcare...</div>
+            <h1 id="display-hero-title">Se incarca...</h1>
+            <p id="display-hero-desc">...</p>
             <div class="hero-actions">
                 <a href="#projects" class="btn btn-main">Explorează Proiectele</a>
                 <a href="#" id="display-cv-link" class="btn btn-outline" target="_blank">Descarcă CV <i data-lucide="download"></i></a>
