@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderAll() {
+    document.title = `${portfolioData.general.logo} | Portofoliu`;
     document.getElementById('display-logo').innerHTML = `${portfolioData.general.logo}<span>.</span>`;
     document.getElementById('display-hero-badge').innerText = portfolioData.general.heroBadge;
     const title = portfolioData.general.heroTitle;
