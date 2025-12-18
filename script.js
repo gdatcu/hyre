@@ -136,7 +136,7 @@ async function exportHTML() {
     const blob = new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: 'text/html' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'hyre_portfolio.html';
+    a.download = 'index.html';
     a.click();
 }
 
