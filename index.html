@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyre | Senior Grade Portfolio Builder</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%236366f1'></rect><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Plus Jakarta Sans, sans-serif' font-size='60' font-weight='800' fill='white'>H</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="mesh-gradient"></div>
+
+    <button id="toggle-editor" class="editor-trigger-btn">
+        <i data-lucide="settings"></i> Personalizează Site-ul
+    </button>
+
+    <aside id="editor-sidebar" class="editor-sidebar">
+        <div class="editor-sidebar-inner">
+            <div class="editor-header">
+                <h2>Hyre Dashboard</h2>
+                <button id="close-editor" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+
+            <nav class="editor-tabs">
+                <button class="tab-btn active" data-tab="general">Info</button>
+                <button class="tab-btn" data-tab="stack">Tech</button>
+                <button class="tab-btn" data-tab="experience">Parcurs</button>
+                <button class="tab-btn" data-tab="projects">Proiecte</button>
+                <button class="tab-btn" data-tab="design">Stil</button>
+            </nav>
+
+            <div class="editor-body">
+                <div id="tab-general" class="tab-pane active">
+                    <div class="field-group"><label>Nume / Logo</label><input type="text" id="edit-logo"></div>
+                    <div class="field-group"><label>Badge Disponibilitate</label><input type="text" id="edit-hero-badge"></div>
+                    <div class="field-group"><label>Titlu Principal</label><input type="text" id="edit-hero-title"></div>
+                    <div class="field-group"><label>Descriere Hero</label><textarea id="edit-hero-desc"></textarea></div>
+                    <div class="field-group"><label>Link URL către CV</label><input type="text" id="edit-cv-link"></div>
+                    <div class="field-group"><label>Formspree ID</label><input type="text" id="edit-formspree"></div>
+                </div>
+
+                <div id="tab-stack" class="tab-pane">
+                    <div id="stack-editor-list"></div>
+                    <button onclick="addStackField()" class="add-item-btn">+ Adaugă Tehnologie</button>
+                </div>
+
+                <div id="tab-experience" class="tab-pane">
+                    <div id="exp-editor-list"></div>
+                    <button onclick="addExperienceField()" class="add-item-btn">+ Adaugă Etapă</button>
+                </div>
+
+                <div id="tab-projects" class="tab-pane">
+                    <div id="project-editor-list"></div>
+                    <button onclick="addProjectField()" class="add-item-btn">+ Adaugă Proiect</button>
+                </div>
+
+                <div id="tab-design" class="tab-pane">
+                    <div class="field-group"><label>Culoare Accent</label><input type="color" id="edit-color-accent"></div>
+                    <div class="field-group"><label>Culoare Fundal</label><input type="color" id="edit-color-bg"></div>
+                    <div class="field-group"><label>Email Contact</label><input type="text" id="edit-email"></div>
+                    <div class="field-group"><label>GitHub URL</label><input type="text" id="edit-github"></div>
+                    <div class="field-group"><label>LinkedIn URL</label><input type="text" id="edit-linkedin"></div>
+                </div>
+            </div>
+
+            <div class="editor-footer">
+                <button onclick="exportHTML()" class="export-btn">
+                    <i data-lucide="download"></i> Exportă Site-ul Hyre
+                </button>
+                <button onclick="resetData()" class="btn-small" style="margin-top: 12px; width: 100%; border: none; background: #fee2e2; color: #b91c1c; cursor: pointer; padding: 10px; border-radius: 8px; font-weight: 700;">
+                    Resetează Tot Progresul
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo" id="display-logo">HYRE<span>.</span></div>
+            <ul class="nav-menu">
+                <li><a href="#projects">Proiecte</a></li>
+                <li><a href="#stack">Tehnologii</a></li>
+                <li><a href="#contact" class="cta-nav">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="hero">
+            <div class="badge" id="display-hero-badge">Disponibil pentru proiecte noi</div>
+            <h1 id="display-hero-title">Încărcare...</h1>
+            <p id="display-hero-desc">Se încarcă datele...</p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-main">Explorează Proiectele</a>
+                <a href="#" id="display-cv-link" class="btn btn-outline" target="_blank">Descarcă CV <i data-lucide="download"></i></a>
+            </div>
+        </section>
+
+        <section id="stack" class="tech-marquee-section">
+            <div class="marquee">
+                <div class="marquee-content" id="display-stack"></div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="section-title">
+                <span>Parcursul meu</span>
+                <h2>Experiență & Educație</h2>
+            </div>
+            <div class="timeline" id="display-experience"></div>
+        </section>
+
+        <section id="projects">
+            <div class="section-title">
+                <span>Portofoliu</span>
+                <h2>Proiecte Selectate</h2>
+            </div>
+            <div class="bento-grid" id="display-projects"></div>
+        </section>
+
+        <section id="contact">
+            <div class="section-title">
+                <span>Contact</span>
+                <h2>Hai să discutăm</h2>
+            </div>
+            <div class="contact-bento">
+                <div class="contact-form-container">
+                    <form action="" method="POST" id="my-form">
+                        <div class="input-group">
+                            <label>Numele tău</label>
+                            <input type="text" name="name" placeholder="Ex: Ion Popescu" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="ion@exemplu.ro" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Mesaj</label>
+                            <textarea name="message" placeholder="Spune-mi despre proiectul tău..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-main w-full" id="submit-btn">
+                            Trimite Mesajul <i data-lucide="send"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-details">
+                    <div class="detail-card">
+                        <i data-lucide="mail"></i>
+                        <div>
+                            <p>Scrie-mi direct</p>
+                            <strong id="display-email">salut@numeprenume.ro</strong>
+                        </div>
+                        <button onclick="copyEmail()" class="copy-small"><i data-lucide="copy"></i></button>
+                    </div>
+                    <div class="social-grid">
+                        <a href="#" id="display-github" class="social-box" target="_blank"><i data-lucide="github"></i> GitHub</a>
+                        <a href="#" id="display-linkedin" class="social-box" target="_blank"><i data-lucide="linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
