@@ -121,3 +121,34 @@ body {
     .contact-bento, .bento-grid { grid-template-columns: 1fr; }
     .editor-sidebar { width: 100%; right: -100%; }
 }
+
+/* Asigurăm alinierea orizontală a imaginii și textului */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Spațiu între imagine și text */
+}
+
+/* Stilizarea imaginii de logo */
+.logo img {
+    width: 60px;       /* Lățime fixă */
+    height: 60px;      /* Înălțime fixă egală cu lățimea pentru a fi pătrat inițial */
+    border-radius: 50%;/* Transformă pătratul în cerc */
+    object-fit: cover; /* Asigură că imaginea nu se deformează dacă nu e pătrată */
+    border: 2px solid var(--accent); /* Opțional: un mic contur în culoarea de accent */
+}
+
+#display-logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Stil pentru selectorul de tip logo din dashboard */
+select#edit-logo-type {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    background: white;
+}
