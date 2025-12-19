@@ -80,6 +80,14 @@
                             <option value="Outfit">Outfit (Geometric)</option>
                         </select>
                     </div>
+                    <div class="field-group">
+                        <label>Ordine Secțiuni</label>
+                        <select id="edit-layout-order" onchange="updateLayoutOrder(this.value)">
+                            <option value="experience,projects,stack">Parcurs > Proiecte > Tech</option>
+                            <option value="projects,experience,stack">Proiecte > Parcurs > Tech</option>
+                            <option value="projects,stack,experience">Proiecte > Tech > Parcurs</option>
+                        </select>
+                    </div>
                     <div class="field-group"><label>Culoare Accent</label><input type="color" id="edit-color-accent"></div>
                     <div class="field-group"><label>Culoare Fundal</label><input type="color" id="edit-color-bg"></div>
                     <div class="field-group"><label>Email Contact</label><input type="text" id="edit-email"></div>

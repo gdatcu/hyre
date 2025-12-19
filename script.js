@@ -28,6 +28,7 @@ const defaultData = {
         accent: "#6366f1",
         bg: "#ffffff",
         font: "Plus Jakarta Sans", // Valoarea default
+        order: ["experience", "projects", "stack"], // Ordinea implicită
         email: "salut@numeprenume.ro",
         github: "#",
         linkedin: "#"
@@ -74,7 +75,7 @@ function renderAll() {
         favicon.href = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='${acc}'></rect><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='60' font-weight='800' fill='white'>H</text></svg>`;
     }
 
-    // 3. Hero Section (AICI ERA EROAREA - Am adăugat verificare de siguranță)
+    // 3. Hero Section
     const heroTitle = portfolioData.general.heroTitle || "";
     document.getElementById('display-hero-badge').innerText = portfolioData.general.heroBadge || "";
     document.getElementById('display-hero-title').innerHTML = heroTitle.replace("experiențe digitale", "<span>experiențe digitale</span>");
@@ -85,19 +86,51 @@ function renderAll() {
     document.documentElement.style.setProperty('--accent', portfolioData.design.accent);
     document.documentElement.style.setProperty('--bg', portfolioData.design.bg);
 
-    // 5. Randare Liste & Social (Stack, Exp, Proiecte)
+    // 5. GESTIUNE ORDINE SECȚIUNI (Nou!)
+    // --- LOGICĂ REORDONARE SECȚIUNI ---
+    const mainContainer = document.querySelector('main.container');
+    const sections = {
+        stack: document.getElementById('stack'),
+        experience: document.getElementById('experience'),
+        projects: document.getElementById('projects')
+    };
+
+    // Păstrăm Hero mereu la început
+    const hero = document.getElementById('hero');
+    if (hero) mainContainer.appendChild(hero);
+
+    // Mutăm secțiunile conform ordinii alese
+    const sectionOrder = portfolioData.design.order || ["stack", "experience", "projects"];
+    sectionOrder.forEach(key => {
+        if (sections[key]) mainContainer.appendChild(sections[key]);
+    });
+
+    // Păstrăm Contactul mereu la final
+    const contact = document.getElementById('contact');
+    if (contact) mainContainer.appendChild(contact);
+    // --- FINAL LOGICĂ REORDONARE ---
+
+    // 6. Randare Liste (Stack, Exp, Proiecte)
     document.getElementById('display-stack').innerHTML = [...(portfolioData.stack || []), ...(portfolioData.stack || [])].map(item => `
         <div class="tech-card">${item.icon.includes('http') || item.icon.includes('data:') ? `<img src="${item.icon}">` : `<i class="${item.icon}"></i>`}<span>${item.name}</span></div>
     `).join('');
 
     document.getElementById('display-experience').innerHTML = (portfolioData.experience || []).map(item => `
-        <div class="timeline-item" data-year="${item.year}"><div class="timeline-dot"></div><div class="timeline-date">${item.date}</div><div class="timeline-content"><div class="timeline-header"><i data-lucide="${item.icon}"></i><h3>${item.title}</h3></div><h4>${item.company}</h4><p>${item.desc}</p></div></div>
+        <div class="timeline-item" data-year="${item.year}">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">${item.date}</div>
+            <div class="timeline-content">
+                <div class="timeline-header"><i data-lucide="${item.icon}"></i><h3>${item.title}</h3></div>
+                <h4>${item.company}</h4><p>${item.desc}</p>
+            </div>
+        </div>
     `).join('');
 
     document.getElementById('display-projects').innerHTML = (portfolioData.projects || []).map(p => `
         <div class="bento-item ${p.size}"><div class="bento-content"><div class="badge">${p.badge}</div><h3>${p.title}</h3><p>${p.desc}</p><div class="bento-tags">${p.tags.split(',').map(t => `<span>${t.trim()}</span>`).join('')}</div></div></div>
     `).join('');
 
+    // Re-inițializare iconițe Lucide (importante pentru noile iconițe alese)
     if (typeof lucide !== 'undefined') lucide.createIcons();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(portfolioData));
 }
@@ -152,6 +185,12 @@ function initEditor() {
     const fontSelect = document.getElementById('edit-font');
     if (fontSelect) fontSelect.value = portfolioData.design.font || "Plus Jakarta Sans";
 
+    // Selector Ordine Secțiuni (Nou!)
+    const orderSelect = document.getElementById('edit-layout-order');
+    if (orderSelect && portfolioData.design.order) {
+        orderSelect.value = portfolioData.design.order.join(',');
+    }
+
     // Randăm listele pentru Tehnologii, Experiență și Proiecte
     renderEditorLists();
 }
@@ -168,6 +207,7 @@ function bindInput(id, section, key) {
 
 // 5. LIST EDITORS (Gestiune Stack, Exp, Proiecte)
 function renderEditorLists() {
+    // 1. Editor Tehnologii (Stack)
     const stackList = document.getElementById('stack-editor-list');
     stackList.innerHTML = portfolioData.stack.map((item, i) => `
         <div class="item-editor-card">
@@ -181,6 +221,7 @@ function renderEditorLists() {
         </div>
     `).join('');
 
+    // 2. Editor Experiență (cu suport Lucide Icons)
     const expList = document.getElementById('exp-editor-list');
     expList.innerHTML = portfolioData.experience.map((item, i) => `
         <div class="item-editor-card">
@@ -189,11 +230,14 @@ function renderEditorLists() {
             <input type="text" value="${item.title}" oninput="updateListItem('experience', ${i}, 'title', this.value)" placeholder="Titlu">
             <input type="text" value="${item.company}" oninput="updateListItem('experience', ${i}, 'company', this.value)" placeholder="Companie">
             <textarea oninput="updateListItem('experience', ${i}, 'desc', this.value)" placeholder="Descriere">${item.desc}</textarea>
-            <select onchange="updateListItem('experience', ${i}, 'icon', this.value)">
-                <option value="briefcase" ${item.icon === 'briefcase' ? 'selected' : ''}>Job</option>
-                <option value="graduation-cap" ${item.icon === 'graduation-cap' ? 'selected' : ''}>Educație</option>
-                <option value="award" ${item.icon === 'award' ? 'selected' : ''}>Premiu</option>
-            </select>
+            
+            <div class="field-group" style="margin-top: 10px;">
+                <label style="font-size: 0.7rem;">Iconiță Lucide (ex: code, heart, terminal)</label>
+                <input type="text" value="${item.icon}" 
+                    oninput="updateListItem('experience', ${i}, 'icon', this.value)" 
+                    placeholder="Nume iconiță de pe lucide.dev">
+            </div>
+
             <div class="item-controls">
                 <button onclick="moveItem('experience', ${i}, -1)" class="btn-small">↑</button>
                 <button onclick="moveItem('experience', ${i}, 1)" class="btn-small">↓</button>
@@ -202,6 +246,7 @@ function renderEditorLists() {
         </div>
     `).join('');
 
+    // 3. Editor Proiecte
     const projList = document.getElementById('project-editor-list');
     projList.innerHTML = portfolioData.projects.map((item, i) => `
         <div class="item-editor-card">
@@ -320,5 +365,10 @@ function handleLogoUpload(input) {
 
 function updateFont(val) {
     portfolioData.design.font = val;
+    renderAll();
+}
+
+function updateLayoutOrder(val) {
+    portfolioData.design.order = val.split(',');
     renderAll();
 }
