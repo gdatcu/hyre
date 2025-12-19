@@ -5,11 +5,12 @@
     --accent: #6366f1;
     --card-bg: rgba(255, 255, 255, 0.6);
     --border: rgba(0, 0, 0, 0.08);
+    --font-main: 'Plus Jakarta Sans', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-main);
     background-color: var(--bg);
     color: var(--text);
     overflow-x: hidden;
