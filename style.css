@@ -153,3 +153,31 @@ select#edit-logo-type {
     font-family: inherit;
     background: white;
 }
+
+/* Efect de ridicare pentru cardurile Bento */
+.bento-item {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; /* */
+}
+
+.bento-item:hover {
+    transform: translateY(-8px); /* */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* */
+    border-color: var(--accent); /* */
+}
+
+/* Animație de intrare pentru secțiuni */
+section {
+    animation: fadeInUp 0.8s ease-out forwards; /* */
+    opacity: 0; /* */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

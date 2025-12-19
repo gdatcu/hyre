@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghid Complet de Lansare | Hyre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .docs-grid { margin-top: 40px; }
+        .step-number { background: var(--accent); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .bento-item h3 { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 1.25rem; }
+        .bento-item ul { list-style: none; padding-left: 0; }
+        .bento-item li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-soft); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+        .bento-item li::before { content: "✔"; color: var(--accent); font-weight: bold; }
+        code { background: rgba(99, 102, 241, 0.1); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-family: 'Courier New', Courier, monospace; font-weight: 600; }
+        .warning-box { background: #fff7ed; border: 1px solid #ffedd5; padding: 20px; border-radius: 16px; margin-top: 20px; font-size: 0.95rem; color: #9a3412; display: flex; gap: 12px; align-items: center; }
+        .section-header { margin: 80px 0 30px; text-align: left; }
+        .host-badge { font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; font-weight: 800; margin-left: auto; }
+        .bg-github { background: #24292f; color: white; }
+        .bg-netlify { background: #25c2a0; color: white; }
+        .bg-vercel { background: #000000; color: white; }
+    </style>
+</head>
+<body>
+    <div class="mesh-gradient"></div>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">HYRE<span>.</span></div>
+            <a href="index.html" class="btn-small">← Înapoi la Editor</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header id="hero" style="padding: 80px 0 60px; text-align: left; align-items: flex-start;">
+            <div class="badge">Ghidul tău de succes</div>
+            <h1>Salutare, <span>viitorule expert!</span> 🚀</h1>
+            <p style="max-width: 700px; margin-left: 0;">Ești la un pas de a avea un portofoliu care nu doar arată "Senior Grade", dar funcționează impecabil. Acest ghid te va purta prin procesul de personalizare și lansare, transformând fișierul tău într-o prezență online de neclintit.</p>
+        </header>
+
+        <div class="bento-grid docs-grid">
+            <div class="bento-item large">
+                <div class="step-number">1</div>
+                <h3><i data-lucide="palette"></i> Personalizarea: Brandul Tău Unic</h3>
+                <p style="margin-bottom: 15px;">Totul începe cu butonul <strong>"Personalizează Site-ul"</strong> situat în colțul ecranului.</p>
+                <ul>
+                    <li><strong>Identitate Vizuală:</strong> Încarcă o fotografie de profil (afișată automat într-un cerc elegant) și setează logo-ul text lângă ea.</li>
+                    <li><strong>Stil și Fonturi:</strong> Alege o culoare de accent și selectează fontul preferat din Google Fonts pentru a schimba instantaneu "vibe-ul" paginii.</li>
+                    <li><strong>Conținut:</strong> Completează secțiunile de experiență, tehnologii și proiecte folosind editorul intuitiv.</li>
+                </ul>
+            </div>
+
+            <div class="bento-item">
+                <div class="step-number">2</div>
+                <h3><i data-lucide="mail"></i> Activează Contactul</h3>
+                <p>Ai nevoie de un ID de la <strong>Formspree</strong> pentru a primi mesaje direct în inbox:</p>
+                <ul>
+                    <li>Creează un cont gratuit pe <code>formspree.io</code>.</li>
+                    <li>Apasă pe <code>+ New Form</code>, dă-i un nume și introdu email-ul tău.</li>
+                    <li>Din tab-ul <strong>Settings</strong>, copiază șirul de la <strong>Form ID</strong>.</li>
+                    <li>Lipește codul în câmpul <strong>Formspree ID</strong> din Dashboard-ul Hyre.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bento-grid" style="margin-top: 20px;">
+            <div class="bento-item large">
+                <div class="step-number">3</div>
+                <h3><i data-lucide="file-check"></i> Regula de Aur pentru CV/Resume</h3>
+                <p>Dacă dorești ca butonul <strong>"Descarcă CV"</strong> să funcționeze corect pentru vizitatori:</p>
+                <div class="warning-box">
+                    <i data-lucide="alert-triangle" style="flex-shrink: 0;"></i>
+                    <span>Fișierul tău (ex: <code>resume.pdf</code>) <strong>TREBUIE</strong> să fie salvat în același folder cu fișierul <code>index.html</code>. Când încarci fișierele pe hosting, ele trebuie să coexiste în rădăcina proiectului.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <div class="section-title"><span>Pasul 4</span><h2>Opțiuni de Hosting: Alege-ți Rampa de Lansare</h2></div>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-item">
+                <div class="step-number">A</div>
+                <h3 style="display: flex; align-items: center;">GitHub Pages <span class="host-badge bg-github">Solid</span></h3>
+                <ul>
+                    <li>Creează un Repository nou pe GitHub (ex: <code>my-portfolio</code>).</li>
+                    <li>Încarcă fișierele <code>index.html</code> și <code>resume.pdf</code>.</li>
+                    <li>Mergi la <strong>Settings > Pages</strong>.</li>
+                    <li>La "Build and deployment", alege sursa <strong>"Deploy from a branch"</strong>.</li>
+                    <li>Selectează branch-ul <code>main</code> și folderul <code>/(root)</code>, apoi apasă <strong>Save</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="bento-item">
+                <div class="step-number">B</div>
+                <h3 style="display: flex; align-items: center;">Netlify Drop <span class="host-badge bg-netlify">Rapid</span></h3>
+                <ul>
+                    <li>Trage folderul cu fișierele tale direct pe [Netlify Drop](https://app.netlify.com/drop).</li>
+                    <li><strong>⚠️ Atenție:</strong> Creează-ți cont gratuit, altfel site-ul expiră după 1 oră!</li>
+                    <li>După ce site-ul este live, mergi la <strong>Domain management</strong>.</li>
+                    <li>Apasă <strong>Options > Edit site name</strong> și alege un nume (ex: <code>gdatcu</code>) pentru adresa <code>gdatcu.netlify.app</code>.</li>
+                </ul>
+            </div>
+
+            <div class="bento-item">
+                <div class="step-number">C</div>
+                <h3 style="display: flex; align-items: center;">Vercel <span class="host-badge bg-vercel">Modern</span></h3>
+                <ul>
+                    <li>Intră pe <code>vercel.com</code> și alege <strong>"Continue with GitHub"</strong>.</li>
+                    <li>Importă depozitul creat la pasul A și apasă <strong>Deploy</strong>.</li>
+                    <li>Sincronizarea este automată la orice modificare pe GitHub!</li>
+                    <li>Pentru subdomeniu personalizat, mergi la <strong>Settings > Domains</strong>, apasă <strong>Edit</strong> și introdu numele dorit.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <div class="section-title"><span>FAQ</span><h2>Întrebări Frecvente</h2></div>
+        </div>
+
+        <div class="bento-grid docs-grid" style="margin-bottom: 80px;">
+            <div class="bento-item">
+                <h3><i data-lucide="image"></i> Poza nu apare?</h3>
+                <p>Verifică dacă fișierul imagine a fost procesat. Hyre salvează imaginea în interiorul HTML-ului ca Base64; re-exportă fișierul dacă ai făcut schimbări.</p>
+            </div>
+            <div class="bento-item">
+                <h3><i data-lucide="link"></i> 404 la CV?</h3>
+                <p>Asigură-te că fișierul PDF este încărcat în rădăcină și că numele acestuia coincide 100% cu cel introdus în Dashboard.</p>
+            </div>
+            <div class="bento-item">
+                <h3><i data-lucide="clock"></i> Build Time?</h3>
+                <p>GitHub și Vercel au nevoie de aproximativ 60-120 de secunde pentru a publica fișierele noi. Ai răbdare și dă refresh.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 60px 0; color: var(--text-soft); border-top: 1px solid var(--border);">
+        <p style="font-weight: 800; margin-bottom: 10px; color: var(--text);">Ești gata să cucerești internetul! 🚀</p>
+        <p style="font-size: 0.8rem;">Creat cu ❤️ pentru comunitatea de developeri.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
