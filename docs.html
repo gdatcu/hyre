@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* RESET & RESPONSIVE FOUNDATION */
+        /* FIX PENTRU RESPONSIVITATE ȘI OVERFLOW */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -16,91 +16,70 @@
             padding: 0 5%;
         }
 
-        /* GRIDUL SMART BENTO */
         .docs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             gap: 20px;
             margin-top: 40px;
         }
 
-        /* Span 2 coloane DOAR pe Desktop */
+        /* Prevenirea ieșirii textului din carduri pe ecrane mici */
+        .bento-item {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-width: 0; 
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
         @media (min-width: 1024px) {
             .bento-item.large { grid-column: span 2; }
         }
 
-        /* STILIZARE ELEMENTE GHID */
+        /* UI ELEMENTS */
         .step-number { 
             background: var(--accent); color: white; width: 35px; height: 35px; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            flex-shrink: 0; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px;
         }
 
         .bento-item h3 { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 1.25rem; }
-        .bento-item ul { list-style: none; padding-left: 0; margin: 0; }
-        .bento-item li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-soft); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
-        .bento-item li::before { content: "✔"; color: var(--accent); font-weight: bold; }
+        .bento-item ul { list-style: none; padding-left: 0; margin: 0; width: 100%; }
         
-        code { background: rgba(99, 102, 241, 0.1); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-family: monospace; font-weight: 600; }
+        .bento-item li { 
+            margin-bottom: 12px; font-size: 0.95rem; color: var(--text-soft); 
+            display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+            overflow-wrap: anywhere; 
+        }
         
-        .warning-box { background: #fff7ed; border: 1px solid #ffedd5; padding: 20px; border-radius: 16px; margin-top: 20px; font-size: 0.95rem; color: #9a3412; display: flex; gap: 12px; align-items: center; }
+        .bento-item li::before { content: "✔"; color: var(--accent); font-weight: bold; flex-shrink: 0; }
         
+        code { 
+            background: rgba(99, 102, 241, 0.1); color: var(--accent); padding: 2px 5px; 
+            border-radius: 4px; font-size: 0.85em; font-family: monospace; font-weight: 600;
+            white-space: pre-wrap; word-break: break-all;
+        }
+        
+        .warning-box { background: #fff7ed; border: 1px solid #ffedd5; padding: 20px; border-radius: 16px; margin-top: 20px; display: flex; gap: 12px; align-items: center; font-size: 0.95rem; color: #9a3412; }
         .section-header { margin: 80px 0 30px; text-align: left; }
-        .host-badge { font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; font-weight: 800; margin-left: auto; }
+        .host-badge { font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; font-weight: 800; margin-left: auto; flex-shrink: 0; }
         .bg-github { background: #24292f; color: white; }
         .bg-netlify { background: #25c2a0; color: white; }
         .bg-vercel { background: #000000; color: white; }
 
-        /* AJUSTĂRI HERO PE MOBIL */
+        /* DARK MODE STYLES */
+        body.dark-mode { --bg: #0f172a; --text: #f8fafc; --text-soft: #94a3b8; --border: #1e293b; --bg-soft: #1e293b; }
+        body.dark-mode .bento-item { background: #1e293b; border-color: #334155; }
+        body.dark-mode .warning-box { background: #1c1917; border-color: #44403c; color: #fdba74; }
+        body.dark-mode .main-nav { background: rgba(15, 23, 42, 0.8); border-color: #1e293b; }
+
+        .dark-mode-toggle { background: none; border: 1px solid var(--border); color: var(--text); cursor: pointer; padding: 8px; border-radius: 8px; display: flex; align-items: center; }
+        .dark-mode-toggle:hover { background: var(--accent); color: white; }
+
         @media (max-width: 640px) {
             header h1 { font-size: 2.2rem; }
             header { padding: 40px 0 !important; }
-            .section-header { margin: 50px 0 20px; }
-            .main-nav .nav-container { padding: 15px 0; }
-        }
-
-        /* VARIABILE PENTRU DARK MODE */
-        body.dark-mode {
-            --bg: #0f172a;
-            --text: #f8fafc;
-            --text-soft: #94a3b8;
-            --border: #1e293b;
-            --bg-soft: #1e293b;
-        }
-
-        /* Ajustări vizuale pentru elementele Bento în Dark Mode */
-        body.dark-mode .bento-item {
-            background: #1e293b;
-            border-color: #334155;
-        }
-
-        body.dark-mode .warning-box {
-            background: #1c1917;
-            border-color: #44403c;
-            color: #fdba74;
-        }
-
-        body.dark-mode .main-nav {
-            background: rgba(15, 23, 42, 0.8);
-            border-color: #1e293b;
-        }
-
-        /* Stil pentru butonul de toggle */
-        .dark-mode-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s;
-        }
-
-        .dark-mode-toggle:hover {
-            background: var(--accent);
-            color: white;
         }
     </style>
 </head>
@@ -121,44 +100,32 @@
 
     <main class="container">
         <header id="hero" style="padding: 80px 0 60px; text-align: left; align-items: flex-start;">
-            <div class="badge">Ghid Complet de Succes</div>
+            <div class="badge">Ghid Complet Senior Grade</div>
             <h1>Salutare, <span>viitorule expert!</span> 🚀</h1>
-            <p style="max-width: 700px; margin-left: 0;">Ești la un pas de a avea un portofoliu care nu doar arată "Senior Grade", dar funcționează impecabil. Acest ghid te va purta prin procesul de personalizare și lansare.</p>
+            <p style="max-width: 700px;">Urmează acest ghid pentru a-ți transforma portofoliul într-o prezență online de neclintit.</p>
         </header>
 
         <div class="docs-grid">
             <div class="bento-item large">
                 <div class="step-number">1</div>
                 <h3><i data-lucide="palette"></i> Personalizarea Brandului</h3>
-                <p style="margin-bottom: 15px;">Totul începe cu butonul <strong>"Personalizează Site-ul"</strong> situat în colțul ecranului.</p>
+                <p>Folosește butonul <strong>"Personalizează Site-ul"</strong> pentru a seta identitatea vizuală.</p>
                 <ul>
-                    <li><strong>Identitate Vizuală:</strong> Încarcă o fotografie de profil (afișată rotund) și setează logo-ul text lângă ea.</li>
-                    <li><strong>Stil și Fonturi:</strong> Alege o culoare de accent și un font Google Font pentru a schimba instantaneu vibe-ul site-ului.</li>
-                    <li><strong>Conținut:</strong> Completează experiența, tehnologiile și proiectele folosind editorul intuitiv.</li>
+                    <li><strong>Identitate:</strong> Încarcă o fotografie de profil și setează logo-ul text.</li>
+                    <li><strong>Style:</strong> Alege o culoare de accent și fontul preferat din Google Fonts.</li>
                 </ul>
             </div>
-
             <div class="bento-item">
                 <div class="step-number">2</div>
                 <h3><i data-lucide="mail"></i> Activează Contactul</h3>
-                <p>Ai nevoie de un ID de la <strong>Formspree</strong> pentru a primi mesaje în inbox:</p>
-                <ul>
-                    <li>Creează un cont gratuit pe <code>formspree.io</code>.</li>
-                    <li>Apasă "+ New Form" și introdu email-ul tău.</li>
-                    <li>Din tab-ul <strong>Settings</strong>, copiază codul de la <strong>Form ID</strong>.</li>
-                    <li>Lipește codul în câmpul <strong>Formspree ID</strong> din Dashboard.</li>
-                </ul>
+                <p>Creează un cont pe <code>formspree.io</code>, generează un formular și copiază <strong>Form ID</strong>-ul în Dashboard.</p>
             </div>
-        </div>
-
-        <div class="bento-grid" style="margin-top: 20px;">
             <div class="bento-item large">
                 <div class="step-number">3</div>
                 <h3><i data-lucide="file-check"></i> Regula de Aur pentru CV</h3>
-                <p>Dacă dorești ca butonul <strong>"Descarcă CV"</strong> să funcționeze corect pentru vizitatori:</p>
                 <div class="warning-box">
-                    <i data-lucide="alert-triangle" style="flex-shrink: 0;"></i>
-                    <span>Fișierul PDF (ex: <code>resume.pdf</code>) <strong>TREBUIE</strong> să fie salvat în același folder cu <code>index.html</code>. Ambele trebuie să coexiste în rădăcina proiectului pe hosting.</span>
+                    <i data-lucide="alert-triangle"></i>
+                    <span>Fișierul <code>resume.pdf</code> <strong>TREBUIE</strong> să coexiste în același folder cu <code>index.html</code> pe hosting.</span>
                 </div>
             </div>
         </div>
@@ -166,121 +133,98 @@
         <div class="section-header">
             <div class="section-title"><span>Pasul 4</span><h2>Opțiuni de Hosting</h2></div>
         </div>
-
         <div class="docs-grid">
             <div class="bento-item">
                 <div class="step-number">A</div>
-                <h3 style="width: 100%;">GitHub Pages <span class="host-badge bg-github">Solid</span></h3>
+                <h3>GitHub Pages <span class="host-badge bg-github">Solid</span></h3>
                 <ul>
-                    <li>Creează un Repository nou (ex: <code>my-portfolio</code>).</li>
-                    <li>Încarcă fișierele <code>index.html</code> și <code>resume.pdf</code>.</li>
-                    <li>Mergi la <strong>Settings > Pages</strong>.</li>
-                    <li>La "Build and deployment", alege <strong>"Deploy from a branch"</strong>.</li>
-                    <li>Selectează branch-ul <code>main</code> și folderul <code>/(root)</code>, apoi apasă <strong>Save</strong>.</li>
+                    <li>Creează un Repo nou (ex: <code>my-portfolio</code>).</li>
+                    <li>Încarcă <code>index.html</code> și <code>resume.pdf</code>.</li>
+                    <li>Activează Pages din <strong>Settings > Pages</strong> pe branch-ul <code>main</code>.</li>
                 </ul>
             </div>
-
             <div class="bento-item">
                 <div class="step-number">B</div>
-                <h3 style="width: 100%;">Netlify Drop <span class="host-badge bg-netlify">Rapid</span></h3>
+                <h3>Netlify Drop <span class="host-badge bg-netlify">Rapid</span></h3>
                 <ul>
-                    <li>Trage folderul cu fișierele tale direct pe <strong>Netlify Drop</strong>.</li>
-                    <li><strong>⚠️ Atenție:</strong> Fă-ți cont gratuit, altfel site-ul expiră după 1 oră!</li>
-                    <li>După deploy, mergi la <strong>Domain management</strong>.</li>
-                    <li>Apasă <strong>Options > Edit site name</strong> pentru a obține adresa <code>gdatcu.netlify.app</code>.</li>
+                    <li>Trage folderul direct pe <strong>Netlify Drop</strong>.</li>
+                    <li><strong>Atenție:</strong> Fă-ți cont pentru a evita expirarea site-ului după 1 oră.</li>
+                    <li>Schimbă URL-ul din <strong>Domain management</strong>.</li>
                 </ul>
             </div>
-
             <div class="bento-item">
                 <div class="step-number">C</div>
-                <h3 style="width: 100%;">Vercel <span class="host-badge bg-vercel">Modern</span></h3>
+                <h3>Vercel <span class="host-badge bg-vercel">Modern</span></h3>
                 <ul>
-                    <li>Intră pe <code>vercel.com</code> și alege <strong>"Continue with GitHub"</strong>.</li>
-                    <li>Importă depozitul creat la pasul A și apasă <strong>Deploy</strong>.</li>
-                    <li><strong>Sincronizare:</strong> Orice modificare (Push) pe GitHub va actualiza automat site-ul!</li>
-                    <li>Mergi la <strong>Settings > Domains</strong> pentru a personaliza URL-ul.</li>
+                    <li>Conectează contul GitHub la <strong>Vercel</strong>.</li>
+                    <li>Importă repo-ul și apasă <strong>Deploy</strong>.</li>
+                    <li>Sincronizarea este automată la orice modificare pe GitHub.</li>
                 </ul>
             </div>
         </div>
 
         <div class="section-header">
-            <div class="section-title"><span>FAQ</span><h2>Întrebări Frecvente</h2></div>
+            <div class="section-title"><span>Extra</span><h2>Resurse Recomandate</h2></div>
         </div>
-
         <div class="docs-grid">
             <div class="bento-item">
-                <h3><i data-lucide="image"></i> Poza nu apare?</h3>
-                <p>Hyre salvează imaginea ca <strong>Base64</strong> direct în HTML. Re-încarcă imaginea în dashboard și exportă din nou fișierul dacă aceasta lipsește.</p>
+                <h3><i data-lucide="palette"></i> Culori</h3>
+                <p>Găsește palete armonioase pe <strong>Coolors.co</strong> pentru culoarea ta de accent.</p>
             </div>
             <div class="bento-item">
-                <h3><i data-lucide="link"></i> 404 la CV?</h3>
-                <p>Asigură-te că fișierul PDF este încărcat în rădăcină și că numele acestuia coincide 100% cu cel scris în Dashboard.</p>
+                <h3><i data-lucide="image"></i> Imagini</h3>
+                <p>Descarcă fotografii profesionale de pe <strong>Unsplash</strong> sau <strong>Pexels</strong>.</p>
             </div>
             <div class="bento-item">
-                <h3><i data-lucide="clock"></i> Build Time?</h3>
-                <p>GitHub și Vercel au nevoie de 1-2 minute pentru a publica schimbările. Dă un refresh după acest interval.</p>
-            </div>
-            <div class="bento-item">
-                <h3><i data-lucide="trash-2"></i> Cum resetez totul?</h3>
-                <p>Folosește butonul <strong>"Resetează Progresul"</strong> din Dashboard pentru a șterge datele din memoria browser-ului (LocalStorage).</p>
+                <h3><i data-lucide="box"></i> Iconițe</h3>
+                <p>Folosește <strong>Devicon.dev</strong> pentru tehnologii sau <strong>Lucide.dev</strong> pentru UI.</p>
             </div>
         </div>
 
-        <section class="section-header" style="margin-top: 80px;">
-            <div class="section-title"><span>Strategie</span><h2>Sfaturi pentru un Portofoliu de Impact</h2></div>
-        </header>
-
+        <div class="section-header">
+            <div class="section-title"><span>Final</span><h2>Strategie & FAQ</h2></div>
+        </div>
         <div class="docs-grid" style="margin-bottom: 80px;">
             <div class="bento-item">
                 <h3><i data-lucide="target"></i> Calitate > Cantitate</h3>
-                <p>Nu lista 20 de proiecte mici din tutoriale. Alege 3-4 proiecte complexe unde poți explica <strong>arhitectura</strong> și <strong>deciziile tehnice</strong> luate.</p>
+                <p>Alege 3-4 proiecte complexe unde poți explica deciziile tehnice luate.</p>
             </div>
-
             <div class="bento-item">
-                <h3><i data-lucide="message-square"></i> Descrieri de Impact</h3>
-                <p>Folosește metoda <strong>STAR</strong> (Situation, Task, Action, Result) în descrierea proiectelor. Explică ce problemă ai rezolvat.</p>
+                <h3><i data-lucide="message-square"></i> Metoda STAR</h3>
+                <p>Folosește Situation, Task, Action, Result în descrierea proiectelor tale.</p>
             </div>
-
             <div class="bento-item">
-                <h3><i data-lucide="zap"></i> Viteză și Accesibilitate</h3>
-                <p>Recrutorii petrec în medie 6 secunde pe un portofoliu. Hyre exportă un singur fișier static pentru o <strong>încărcare instantanee</strong>.</p>
+                <h3><i data-lucide="image"></i> Poza nu apare?</h3>
+                <p>Hyre salvează imaginea ca <strong>Base64</strong>. Re-încarcă poza și exportă din nou.</p>
             </div>
-
-            <div class="bento-item large">
-                <h3><i data-lucide="sparkles"></i> Branding Personal Consistent</h3>
-                <p>Asigură-te că imaginea de profil este profesională și că ai ales o <strong>Culoare de Accent</strong> care se potrivește cu domeniul tău de expertiză.</p>
+            <div class="bento-item">
+                <h3><i data-lucide="trash-2"></i> Resetare Date</h3>
+                <p>Butonul <strong>"Resetează Progresul"</strong> șterge datele din LocalStorage-ul browserului.</p>
             </div>
         </div>
     </main>
 
     <footer style="text-align: center; padding: 60px 0; color: var(--text-soft); border-top: 1px solid var(--border);">
-        <p style="font-weight: 800; margin-bottom: 10px; color: var(--text);">Ești gata să cucerești internetul! 🚀</p>
+        <p style="font-weight: 800; color: var(--text);">Ești gata să cucerești internetul! 🚀</p>
         <p style="font-size: 0.8rem;">Creat cu ❤️ pentru comunitatea de developeri.</p>
     </footer>
 
-    <script>lucide.createIcons();</script>
     <script>
         function toggleDarkMode() {
-        const isDark = document.body.classList.toggle('dark-mode');
-        const btn = document.getElementById('theme-btn');
-        
-        // Actualizăm iconița
-        btn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-        
-        // Salvăm preferința
-        localStorage.setItem('docs_theme', isDark ? 'dark' : 'light');
-    }
-
-    // Verificăm tema la încărcare
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('docs_theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            document.getElementById('theme-btn').innerHTML = '<i data-lucide="sun"></i>';
+            const isDark = document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('theme-btn');
+            btn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
             if (typeof lucide !== 'undefined') lucide.createIcons();
+            localStorage.setItem('docs_theme', isDark ? 'dark' : 'light');
         }
-    });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('docs_theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-btn').innerHTML = '<i data-lucide="sun"></i>';
+            }
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
