@@ -372,3 +372,33 @@ function updateLayoutOrder(val) {
     portfolioData.design.order = val.split(',');
     renderAll();
 }
+
+function togglePreviewMode() {
+    const isPreview = document.body.classList.toggle('preview-active');
+    const sidebar = document.getElementById('editor-sidebar');
+    
+    if (isPreview) {
+        // Închidem sidebar-ul dacă este deschis
+        sidebar.classList.remove('active');
+        
+        // Creăm un buton temporar de "Ieșire Preview"
+        const exitBtn = document.createElement('button');
+        exitBtn.id = 'exit-preview-btn';
+        exitBtn.innerHTML = '<i data-lucide="eye-off"></i> Ieșire Preview';
+        exitBtn.className = 'exit-preview-floating';
+        exitBtn.onclick = togglePreviewMode;
+        document.body.appendChild(exitBtn);
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    } else {
+        // Eliminăm butonul de ieșire
+        const exitBtn = document.getElementById('exit-preview-btn');
+        if (exitBtn) exitBtn.remove();
+    }
+}
+
+// Permitem ieșirea din Preview apăsând tasta Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('preview-active')) {
+        togglePreviewMode();
+    }
+});

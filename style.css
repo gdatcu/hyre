@@ -181,3 +181,34 @@ section {
         transform: translateY(0);
     }
 }
+
+/* Ascundem elementele de editare în Preview Mode */
+body.preview-active #editor-sidebar,
+body.preview-active .editor-trigger-btn {
+    display: none !important;
+}
+
+/* Stil pentru butonul plutitor de ieșire */
+.exit-preview-floating {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.5s ease;
+}
+
+.exit-preview-floating:hover {
+    transform: translateX(-50%) scale(1.05);
+}
