@@ -25,6 +25,10 @@
         <i data-lucide="settings"></i> Personalizează Site-ul
     </button>
 
+    <a href="https://www.buymeacoffee.com/georgedatcu" target="_blank" id="creator-coffee-trigger" class="creator-coffee-btn">
+        <i data-lucide="heart"></i> <span id="creator-coffee-txt">Susține Proiectul</span>
+    </a>
+
     <aside id="editor-sidebar" class="editor-sidebar">
         <div class="editor-sidebar-inner">
             <div class="editor-header">
@@ -65,6 +69,11 @@
                     <div class="field-group"><label id="lbl-hero-desc">Descriere Hero</label><textarea id="edit-hero-desc"></textarea></div>
                     <div class="field-group"><label id="lbl-cv-url">Link URL către CV</label><input type="text" id="edit-cv-link"></div>
                     <div class="field-group"><label id="lbl-formspree">Formspree ID</label><input type="text" id="edit-formspree"></div>
+
+                    <div class="field-group">
+                        <label id="lbl-coffee">Link Buy Me a Coffee</label>
+                        <input type="text" id="edit-coffee" placeholder="https://buymeacoffee.com/gdatcu">
+                    </div>
                     
                     <div class="field-group" style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px;">
                         <label id="lbl-seo-header" style="font-weight: 800; color: var(--accent);">🔍 Setări SEO & Social Media</label>
@@ -193,6 +202,9 @@
             <div class="hero-actions">
                 <a href="#projects" class="btn btn-main" id="hero-btn-explore">Explorează Proiectele</a>
                 <a href="#" id="display-cv-link" class="btn btn-outline" target="_blank">Descarcă CV <i data-lucide="download"></i></a>
+                <a href="#" id="display-coffee-link" class="btn btn-coffee" target="_blank">
+                        <span id="btn-coffee-text">Cumpără-mi o cafea</span> <i data-lucide="coffee"></i>
+                </a>
             </div>
         </section>
 

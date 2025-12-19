@@ -93,6 +93,11 @@ const translations = {
         btn_preview: "Preview Mode",
         btn_export: "Exportă index.html",
         btn_reset: "Resetează Progresul",
+
+        // Buy Me a Coffee
+        lbl_coffee: "Link Buy Me a Coffee",
+        btn_coffee: "Cumpără-mi o cafea",
+        btn_support: "Susține Proiectul",
         
         // Mesaje Sistem și Validări
         exit_preview: "Ieșire Preview",
@@ -126,6 +131,11 @@ const translations = {
         ph_message: "Tell me about your project...",
         btn_send: "Send Message",
         contact_direct: "Email me directly",
+
+        //Buy Me a Coffee
+        lbl_coffee: "Buy Me a Coffee Link",
+        btn_coffee: "Buy Me a Coffee",
+        btn_support: "Support Project",
 
         // Dashboard UI - Header & Tabs
         btn_customize: "Customize Website",
@@ -209,6 +219,7 @@ const defaultData = {
         metaDescription: "",
         ogImage: "",
         faviconImage: "",
+        coffeeUrl: "", // Lasă gol implicit
         heroBadge: "Disponibil pentru proiecte noi",
         heroTitle: "Transform idei în experiențe digitale memorabile.",
         heroDesc: "Sunt un Junior Developer axat pe detalii, performanță și un design care contează. Îmbin estetica cu funcționalitatea.",
@@ -269,6 +280,24 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderAll() {
     const lang = portfolioData.general.lang || 'ro';
     const t = translations[lang];
+
+    // Traducere etichetă Dashboard
+    document.getElementById('lbl-coffee').innerText = t.lbl_coffee;
+
+    // Traducere și link buton site public
+    const coffeeBtn = document.getElementById('display-coffee-link');
+    document.getElementById('btn-coffee-text').innerText = t.btn_coffee;
+    coffeeBtn.href = portfolioData.general.coffeeUrl || "#";
+
+    // Ascunde butonul dacă nu există link setat
+    if (!portfolioData.general.coffeeUrl) {
+        coffeeBtn.style.display = "none";
+    } else {
+        coffeeBtn.style.display = "flex";
+    }
+
+    // Traducere buton creator
+    document.getElementById('creator-coffee-txt').innerText = t.btn_support;
 
     // --- A. TRADUCERE UI SITE ---
     document.getElementById('nav-link-projects').innerText = t.nav_projects;
@@ -482,6 +511,7 @@ function initEditor() {
     bindInput('edit-email', 'design', 'email');
     bindInput('edit-github', 'design', 'github');
     bindInput('edit-linkedin', 'design', 'linkedin');
+    bindInput('edit-coffee', 'general', 'coffeeUrl');
     bindInput('edit-meta-title', 'general', 'metaTitle');
     bindInput('edit-meta-desc', 'general', 'metaDescription');
 

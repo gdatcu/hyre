@@ -3,22 +3,22 @@
 
 [ **English** | [Română](#hyre-română) ]
 
-**Hyre** is a modern "Portfolio Builder" tool specifically designed for developers[cite: 1, 3]. It generates a high-performance static portfolio based on a **Bento Grid** design, ready to be exported and hosted instantly[cite: 4, 24].
+**Hyre** is a modern "Portfolio Builder" tool specifically designed for developers. It generates a high-performance static portfolio based on a **Bento Grid** design, ready to be exported and hosted instantly.
 
 ---
 
 ## ✨ Main Features
 
 ### 🛠️ Hyre Dashboard (Live Editor)
-- **Visual Customization:** Change the logo (text or image), accent colors, and background in real-time[cite: 7, 8, 10].
+- **Visual Customization:** Change the logo (text or image), accent colors, and background in real-time.
 - **Reordering System:** Choose the order of sections (Projects, Experience, Tech) to highlight your strengths.
-- **Google Fonts Integration:** Select your desired font from a curated list for a modern look[cite: 12].
+- **Google Fonts Integration:** Select your desired font from a curated list for a modern look.
 - **Multilingual Support:** Interface and output support for both English and Romanian.
 
 ### 🔍 SEO & Social Preview (LinkedIn Ready)
-- **Meta Tags:** Configure Title and Description for optimal indexing in Google[cite: 14, 15].
-- **Open Graph (OG) Image:** Upload a preview image that will automatically appear when you share the link on LinkedIn or X[cite: 16].
-- **Custom Favicon:** Personalize the browser tab icon for complete branding[cite: 17].
+- **Meta Tags:** Configure Title and Description for optimal indexing in Google.
+- **Open Graph (OG) Image:** Upload a preview image that will automatically appear when you share the link on LinkedIn or X.
+- **Custom Favicon:** Personalize the browser tab icon for complete branding.
 - **SEO Validation:** Real-time feedback on optimal title and description length.
 
 ### 💎 Premium UX & UI
@@ -28,9 +28,9 @@
 - **Dark Mode Docs:** The documentation page includes a dark mode for developer comfort.
 
 ### 📤 Export & Deployment
-- **Single File Export:** Generates a completely independent `index.html` file (integrated CSS and JS), eliminating external dependencies[cite: 25, 92].
-- **Clean Code:** Export logic automatically cleans attributes injected by browser extensions (e.g., NordPass, Grammarly)[cite: 26, 93].
-- **Formspree Integration:** Functional contact form by simply entering an ID[cite: 20, 87].
+- **Single File Export:** Generates a completely independent `index.html` file (integrated CSS and JS), eliminating external dependencies.
+- **Clean Code:** Export logic automatically cleans attributes injected by browser extensions (e.g., NordPass, Grammarly).
+- **Formspree Integration:** Functional contact form by simply entering an ID.
 
 ---
 
@@ -64,9 +64,9 @@ Hyre is a project created for the community. Contributions of any kind are welco
 
 1. **Configuration:** Open `index.html` and use the "Customize Website" button.
 2. **Editing:** Fill in your experience, technologies, and projects in the Dashboard.
-3. **SEO:** Configure SEO settings to ensure the portfolio looks good on social media[cite: 63].
-4. **Export:** Press the "Export index.html" button to get the final file[cite: 25].
-5. **Launch:** Upload the file to GitHub Pages, Netlify, or Vercel (see the [Launch Guide](docs.html))[cite: 29, 42, 47].
+3. **SEO:** Configure SEO settings to ensure the portfolio looks good on social media.
+4. **Export:** Press the "Export index.html" button to get the final file.
+5. **Launch:** Upload the file to GitHub Pages, Netlify, or Vercel (see the [Launch Guide](docs.html)).
 
 ---
 
@@ -82,22 +82,22 @@ Hyre is a project created for the community. Contributions of any kind are welco
 # HYRE (Română). 🚀
 ### Senior Grade Portfolio Builder pentru Developeri
 
-**Hyre** este un instrument modern de tip "Portfolio Builder" conceput special pentru developeri[cite: 1, 3]. Acesta generează un portofoliu static de înaltă performanță, bazat pe un design de tip **Bento Grid**, gata de a fi exportat și găzduit instantaneu[cite: 4, 24].
+**Hyre** este un instrument modern de tip "Portfolio Builder" conceput special pentru developeri. Acesta generează un portofoliu static de înaltă performanță, bazat pe un design de tip **Bento Grid**, gata de a fi exportat și găzduit instantaneu.
 
 ---
 
 ## ✨ Funcționalități Principale
 
 ### 🛠️ Hyre Dashboard (Editor Live)
-- **Personalizare Vizuală:** Schimbă logo-ul (text sau imagine), culorile de accent și fundalul în timp real[cite: 7, 8, 10].
+- **Personalizare Vizuală:** Schimbă logo-ul (text sau imagine), culorile de accent și fundalul în timp real.
 - **Sistem de Reordonare:** Alege ordinea secțiunilor (Proiecte, Experiență, Tech) pentru a-ți evidenția punctele forte.
-- **Google Fonts Integration:** Selectează fontul dorit dintr-o listă curatoriată pentru un aspect modern[cite: 12].
+- **Google Fonts Integration:** Selectează fontul dorit dintr-o listă curatoriată pentru un aspect modern.
 - **Suport Multilingv:** Interfață și export disponibile în Română și Engleză.
 
 ### 🔍 SEO & Social Preview (LinkedIn Ready)
-- **Meta Tags:** Configurează Titlul și Descrierea pentru o indexare optimă în Google[cite: 14, 15].
-- **Open Graph (OG) Image:** Încarcă o imagine de previzualizare care va apărea automat când distribui link-ul pe LinkedIn sau X[cite: 16].
-- **Favicon Custom:** Personalizează iconița din tab-ul browserului pentru un branding complet[cite: 17].
+- **Meta Tags:** Configurează Titlul și Descrierea pentru o indexare optimă în Google.
+- **Open Graph (OG) Image:** Încarcă o imagine de previzualizare care va apărea automat când distribui link-ul pe LinkedIn sau X.
+- **Favicon Custom:** Personalizează iconița din tab-ul browserului pentru un branding complet.
 - **SEO Validation:** Feedback în timp real privind lungimea optimă a titlului și descrierii.
 
 ### 💎 UX & UI Premium
@@ -107,9 +107,9 @@ Hyre is a project created for the community. Contributions of any kind are welco
 - **Dark Mode Docs:** Pagina de documentație include un mod întunecat pentru confortul vizual al developerilor.
 
 ### 📤 Export & Deployment
-- **Single File Export:** Generează un fișier `index.html` complet independent (CSS și JS integrate), eliminând dependențele externe[cite: 25, 92].
-- **Clean Code:** Logica de export curăță automat atributele injectate de extensiile browserului (ex: NordPass, Grammarly)[cite: 26, 93].
-- **Formspree Integration:** Formular de contact funcțional prin simpla introducere a unui ID[cite: 20, 87].
+- **Single File Export:** Generează un fișier `index.html` complet independent (CSS și JS integrate), eliminând dependențele externe.
+- **Clean Code:** Logica de export curăță automat atributele injectate de extensiile browserului (ex: NordPass, Grammarly).
+- **Formspree Integration:** Formular de contact funcțional prin simpla introducere a unui ID.
 
 ---
 
@@ -143,9 +143,9 @@ Hyre este un proiect creat pentru comunitate. Contribuțiile de orice fel sunt b
 
 1. **Configurare:** Deschide `index.html` și folosește butonul "Personalizează Site-ul".
 2. **Editare:** Completează-ți experiența, tehnologiile și proiectele în Dashboard.
-3. **SEO:** Configurează setările SEO pentru a te asigura că portofoliul arată bine pe rețelele sociale[cite: 63].
-4. **Export:** Apasă butonul "Exportă index.html" pentru a obține fișierul final[cite: 25].
-5. **Lansare:** Încarcă fișierul pe GitHub Pages, Netlify sau Vercel (vezi [Ghidul de Lansare](docs.html))[cite: 29, 42, 47].
+3. **SEO:** Configurează setările SEO pentru a te asigura că portofoliul arată bine pe rețelele sociale.
+4. **Export:** Apasă butonul "Exportă index.html" pentru a obține fișierul final.
+5. **Lansare:** Încarcă fișierul pe GitHub Pages, Netlify sau Vercel (vezi [Ghidul de Lansare](docs.html)).
 
 ---
 
