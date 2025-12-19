@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* FIX PENTRU RESPONSIVITATE ȘI OVERFLOW */
+        /* FUNDAȚIE RESPONSIVE ȘI FIX OVERFLOW */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -18,12 +18,12 @@
 
         .docs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
             gap: 20px;
             margin-top: 40px;
         }
 
-        /* Prevenirea ieșirii textului din carduri pe ecrane mici */
+        /* Încadrare text forțată pentru a preveni ieșirea din carduri */
         .bento-item {
             display: flex;
             flex-direction: column;
@@ -37,11 +37,11 @@
             .bento-item.large { grid-column: span 2; }
         }
 
-        /* UI ELEMENTS */
+        /* STILIZARE ELEMENTE UI */
         .step-number { 
             background: var(--accent); color: white; width: 35px; height: 35px; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            flex-shrink: 0; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px;
+            flex-shrink: 0; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
         }
 
         .bento-item h3 { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 1.25rem; }
@@ -68,14 +68,12 @@
         .bg-netlify { background: #25c2a0; color: white; }
         .bg-vercel { background: #000000; color: white; }
 
-        /* DARK MODE STYLES */
+        /* DARK MODE */
         body.dark-mode { --bg: #0f172a; --text: #f8fafc; --text-soft: #94a3b8; --border: #1e293b; --bg-soft: #1e293b; }
         body.dark-mode .bento-item { background: #1e293b; border-color: #334155; }
         body.dark-mode .warning-box { background: #1c1917; border-color: #44403c; color: #fdba74; }
         body.dark-mode .main-nav { background: rgba(15, 23, 42, 0.8); border-color: #1e293b; }
-
         .dark-mode-toggle { background: none; border: 1px solid var(--border); color: var(--text); cursor: pointer; padding: 8px; border-radius: 8px; display: flex; align-items: center; }
-        .dark-mode-toggle:hover { background: var(--accent); color: white; }
 
         @media (max-width: 640px) {
             header h1 { font-size: 2.2rem; }
@@ -90,9 +88,7 @@
         <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
             <div class="logo">HYRE<span>.</span></div>
             <div style="display: flex; gap: 10px; align-items: center;">
-                <button onclick="toggleDarkMode()" id="theme-btn" class="dark-mode-toggle">
-                    <i data-lucide="moon"></i>
-                </button>
+                <button onclick="toggleDarkMode()" id="theme-btn" class="dark-mode-toggle"><i data-lucide="moon"></i></button>
                 <a href="index.html" class="btn-small">← Înapoi la Editor</a>
             </div>
         </div>
@@ -100,84 +96,99 @@
 
     <main class="container">
         <header id="hero" style="padding: 80px 0 60px; text-align: left; align-items: flex-start;">
-            <div class="badge">Ghid Complet Senior Grade</div>
+            <div class="badge">Ghid Complet de Succes</div>
             <h1>Salutare, <span>viitorule expert!</span> 🚀</h1>
-            <p style="max-width: 700px;">Urmează acest ghid pentru a-ți transforma portofoliul într-o prezență online de neclintit.</p>
+            <p style="max-width: 700px; margin-left: 0;">Ești la un pas de a avea un portofoliu care nu doar arată "Senior Grade", dar funcționează impecabil. Acest ghid te va purta prin procesul de personalizare și lansare, transformând fișierul tău într-o prezență online de neclintit.</p>
         </header>
 
         <div class="docs-grid">
             <div class="bento-item large">
                 <div class="step-number">1</div>
-                <h3><i data-lucide="palette"></i> Personalizarea Brandului</h3>
-                <p>Folosește butonul <strong>"Personalizează Site-ul"</strong> pentru a seta identitatea vizuală.</p>
+                <h3><i data-lucide="palette"></i> Personalizarea Brandului Unic</h3>
+                <p style="margin-bottom: 15px;">Totul începe cu butonul <strong>"Personalizează Site-ul"</strong> situat în colțul ecranului.</p>
                 <ul>
-                    <li><strong>Identitate:</strong> Încarcă o fotografie de profil și setează logo-ul text.</li>
-                    <li><strong>Style:</strong> Alege o culoare de accent și fontul preferat din Google Fonts.</li>
+                    <li><strong>Identitate Vizuală:</strong> Încarcă o fotografie de profil (afișată rotund într-un cerc elegant) și setează logo-ul text lângă ea.</li>
+                    <li><strong>Stil și Fonturi:</strong> Alege o culoare de accent care să te definească și selectează fontul preferat din Google Fonts pentru a schimba instantaneu "vibe-ul" paginii.</li>
+                    <li><strong>Conținut:</strong> Completează secțiunile de experiență, tehnologii și proiecte folosind editorul intuitiv.</li>
                 </ul>
             </div>
+
             <div class="bento-item">
                 <div class="step-number">2</div>
                 <h3><i data-lucide="mail"></i> Activează Contactul</h3>
-                <p>Creează un cont pe <code>formspree.io</code>, generează un formular și copiază <strong>Form ID</strong>-ul în Dashboard.</p>
+                <p>Ai nevoie de un ID de la <strong>Formspree</strong> pentru a primi mesaje direct în inbox:</p>
+                <ul>
+                    <li>Creează un cont gratuit pe <code>formspree.io</code>.</li>
+                    <li>Apasă pe <code>+ New Form</code>, dă-i un nume (ex: "My Portfolio") și introdu email-ul tău.</li>
+                    <li>După creare, mergi la tab-ul <strong>Settings</strong> și copiază șirul de la <strong>Form ID</strong>.</li>
+                    <li>Lipește acest cod în câmpul <strong>Formspree ID</strong> din Dashboard-ul Hyre.</li>
+                </ul>
             </div>
+
             <div class="bento-item large">
                 <div class="step-number">3</div>
-                <h3><i data-lucide="file-check"></i> Regula de Aur pentru CV</h3>
+                <h3><i data-lucide="file-check"></i> Regula de Aur pentru CV/Resume</h3>
+                <p>Dacă dorești ca butonul <strong>"Descarcă CV"</strong> să funcționeze corect pentru vizitatori:</p>
                 <div class="warning-box">
-                    <i data-lucide="alert-triangle"></i>
-                    <span>Fișierul <code>resume.pdf</code> <strong>TREBUIE</strong> să coexiste în același folder cu <code>index.html</code> pe hosting.</span>
+                    <i data-lucide="alert-triangle" style="flex-shrink: 0;"></i>
+                    <span>Fișierul tău (ex: <code>resume.pdf</code>) <strong>TREBUIE</strong> să fie salvat în același folder cu fișierul <code>index.html</code>. Când încarci fișierele pe hosting, ele trebuie să coexiste în rădăcina proiectului.</span>
                 </div>
             </div>
         </div>
 
         <div class="section-header">
-            <div class="section-title"><span>Pasul 4</span><h2>Opțiuni de Hosting</h2></div>
+            <div class="section-title"><span>Pasul 4</span><h2>Opțiuni de Hosting: Rampa de Lansare</h2></div>
         </div>
+
         <div class="docs-grid">
             <div class="bento-item">
                 <div class="step-number">A</div>
                 <h3>GitHub Pages <span class="host-badge bg-github">Solid</span></h3>
                 <ul>
-                    <li>Creează un Repo nou (ex: <code>my-portfolio</code>).</li>
-                    <li>Încarcă <code>index.html</code> și <code>resume.pdf</code>.</li>
-                    <li>Activează Pages din <strong>Settings > Pages</strong> pe branch-ul <code>main</code>.</li>
+                    <li>Creează un depozit nou pe GitHub (ex: <code>my-portfolio</code>).</li>
+                    <li>Încarcă fișierele <code>index.html</code> și <code>resume.pdf</code> în rădăcină.</li>
+                    <li>Mergi la <strong>Settings > Pages</strong> și la "Build and deployment" alege sursa <strong>"Deploy from a branch"</strong>.</li>
+                    <li>Selectează branch-ul <code>main</code> și folderul <code>/(root)</code>, apoi apasă <strong>Save</strong>.</li>
                 </ul>
             </div>
+
             <div class="bento-item">
                 <div class="step-number">B</div>
                 <h3>Netlify Drop <span class="host-badge bg-netlify">Rapid</span></h3>
                 <ul>
-                    <li>Trage folderul direct pe <strong>Netlify Drop</strong>.</li>
-                    <li><strong>Atenție:</strong> Fă-ți cont pentru a evita expirarea site-ului după 1 oră.</li>
-                    <li>Schimbă URL-ul din <strong>Domain management</strong>.</li>
+                    <li>Trage folderul cu fișierele tale direct pe <strong>Netlify Drop</strong>.</li>
+                    <li><strong>⚠️ Atenție:</strong> Fă-ți cont gratuit, altfel site-ul expiră după 1 oră! Fă-ți cont pentru a-l păstra online permanent.</li>
+                    <li>După deploy, mergi la <strong>Domain management > Edit site name</strong> pentru a obține adresa <code>numele-tau.netlify.app</code>.</li>
                 </ul>
             </div>
+
             <div class="bento-item">
                 <div class="step-number">C</div>
                 <h3>Vercel <span class="host-badge bg-vercel">Modern</span></h3>
                 <ul>
-                    <li>Conectează contul GitHub la <strong>Vercel</strong>.</li>
-                    <li>Importă repo-ul și apasă <strong>Deploy</strong>.</li>
-                    <li>Sincronizarea este automată la orice modificare pe GitHub.</li>
+                    <li>Intră pe <code>vercel.com</code> și alege <strong>"Continue with GitHub"</strong>.</li>
+                    <li>Importă depozitul de pe GitHub și apasă <strong>Deploy</strong>.</li>
+                    <li><strong>Sincronizare Magică:</strong> Orice modificare (Push) pe GitHub va actualiza automat site-ul live.</li>
+                    <li>Schimbă subdomeniul în <code>nume.vercel.app</code> din <strong>Settings > Domains</strong>.</li>
                 </ul>
             </div>
         </div>
 
         <div class="section-header">
-            <div class="section-title"><span>Extra</span><h2>Resurse Recomandate</h2></div>
+            <div class="section-title"><span>Resurse</span><h2>Unelte pentru un Design Premium</h2></div>
         </div>
         <div class="docs-grid">
             <div class="bento-item">
                 <h3><i data-lucide="palette"></i> Culori</h3>
-                <p>Găsește palete armonioase pe <strong>Coolors.co</strong> pentru culoarea ta de accent.</p>
+                <p>Folosește <strong>Coolors.co</strong> sau <strong>Adobe Color</strong> pentru a găsi combinații armonioase care să devină culoarea ta de accent.</p>
             </div>
             <div class="bento-item">
                 <h3><i data-lucide="image"></i> Imagini</h3>
-                <p>Descarcă fotografii profesionale de pe <strong>Unsplash</strong> sau <strong>Pexels</strong>.</p>
+                <p>Descarcă fotografii profesionale de pe <strong>Unsplash</strong> sau <strong>Pexels</strong> pentru a-ți ilustra proiectele la calitate maximă.</p>
             </div>
             <div class="bento-item">
-                <h3><i data-lucide="box"></i> Iconițe</h3>
-                <p>Folosește <strong>Devicon.dev</strong> pentru tehnologii sau <strong>Lucide.dev</strong> pentru UI.</p>
+                <h3><i data-lucide="box"></i> Iconițe Tech</h3>
+                <p>Găsește logo-uri pentru orice tehnologie pe <strong>Devicon.dev</strong> sau iconițe vectoriale pe <strong>Lucide.dev</strong>.</p>
             </div>
         </div>
 
@@ -187,24 +198,24 @@
         <div class="docs-grid" style="margin-bottom: 80px;">
             <div class="bento-item">
                 <h3><i data-lucide="target"></i> Calitate > Cantitate</h3>
-                <p>Alege 3-4 proiecte complexe unde poți explica deciziile tehnice luate.</p>
+                <p>Nu lista 20 de proiecte mici. Alege 3-4 proiecte complexe unde poți explica <strong>arhitectura</strong> și deciziile tehnice luate.</p>
             </div>
             <div class="bento-item">
                 <h3><i data-lucide="message-square"></i> Metoda STAR</h3>
-                <p>Folosește Situation, Task, Action, Result în descrierea proiectelor tale.</p>
+                <p>Folosește Situation, Task, Action, Result în descrierea proiectelor tale pentru un impact maxim asupra recrutorilor.</p>
             </div>
             <div class="bento-item">
                 <h3><i data-lucide="image"></i> Poza nu apare?</h3>
-                <p>Hyre salvează imaginea ca <strong>Base64</strong>. Re-încarcă poza și exportă din nou.</p>
+                <p>Hyre salvează imaginea ca <strong>Base64</strong> direct în HTML. Re-încarcă poza în dashboard și exportă din nou dacă aceasta lipsește.</p>
             </div>
             <div class="bento-item">
                 <h3><i data-lucide="trash-2"></i> Resetare Date</h3>
-                <p>Butonul <strong>"Resetează Progresul"</strong> șterge datele din LocalStorage-ul browserului.</p>
+                <p>Butonul <strong>"Resetează Progresul"</strong> din Dashboard șterge definitiv datele din LocalStorage-ul browserului.</p>
             </div>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 60px 0; color: var(--text-soft); border-top: 1px solid var(--border);">
+    <footer style="text-align: center; padding: 60px 0; border-top: 1px solid var(--border);">
         <p style="font-weight: 800; color: var(--text);">Ești gata să cucerești internetul! 🚀</p>
         <p style="font-size: 0.8rem;">Creat cu ❤️ pentru comunitatea de developeri.</p>
     </footer>
@@ -217,7 +228,6 @@
             if (typeof lucide !== 'undefined') lucide.createIcons();
             localStorage.setItem('docs_theme', isDark ? 'dark' : 'light');
         }
-
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('docs_theme') === 'dark') {
                 document.body.classList.add('dark-mode');
