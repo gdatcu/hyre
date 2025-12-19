@@ -133,6 +133,10 @@ function renderAll() {
     // Re-inițializare iconițe Lucide (importante pentru noile iconițe alese)
     if (typeof lucide !== 'undefined') lucide.createIcons();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(portfolioData));
+
+    // Apelăm funcția de setup la randare
+    // Adaugă la finalul funcției renderAll():
+    setupShareLinks();
 }
 
 // 4. EDITOR LOGIC
@@ -402,3 +406,24 @@ document.addEventListener('keydown', (e) => {
         togglePreviewMode();
     }
 });
+
+function setupShareLinks() {
+    // Folosim link-ul de bază al aplicației Hyre (sau link-ul tău de GitHub)
+    const appUrl = "https://hyre-builder.netlify.app"; 
+    const message = "Tocmai am folosit Hyre pentru a-mi genera un portofoliu Senior Grade! 🚀 Încearcă-l și tu:";
+
+    const lnk = document.getElementById('share-linkedin');
+    const x = document.getElementById('share-x');
+
+    if(lnk) lnk.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(appUrl)}`;
+    if(x) x.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(appUrl)}`;
+}
+
+function copyHyreLink() {
+    const appUrl = "https://hyre-builder.netlify.app";
+    navigator.clipboard.writeText(appUrl).then(() => {
+        const txt = document.getElementById('copy-text');
+        txt.innerText = "Copiat! ✅";
+        setTimeout(() => { txt.innerText = "Copiază Link"; }, 2000);
+    });
+}

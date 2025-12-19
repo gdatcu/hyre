@@ -212,3 +212,38 @@ body.preview-active .editor-trigger-btn {
 .exit-preview-floating:hover {
     transform: translateX(-50%) scale(1.05);
 }
+/* Widget Share în Sidebar */
+.share-sidebar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.share-card-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.share-card-mini:hover {
+    background: #f1f5f9;
+    border-color: var(--accent);
+    transform: translateX(5px);
+}
+
+.share-card-mini i {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+}
