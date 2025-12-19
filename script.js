@@ -4,6 +4,7 @@ const STORAGE_KEY = 'hyre_builder_autosave';
 const defaultData = {
     general: {
         logo: "HYRE",
+        logoImage: "",
         heroBadge: "Disponibil pentru proiecte noi",
         heroTitle: "Transform idei în experiențe digitale memorabile.",
         heroDesc: "Sunt un Junior Developer axat pe detalii, performanță și un design care contează. Îmbin estetica cu funcționalitatea.",
@@ -46,11 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 3. RENDER FUNCTIONS
 function renderAll() {
-    // Titlul paginii
+    // Titlu dinamic tab
     document.title = `${portfolioData.general.logo} | Portofoliu`;
 
-    // Logo & Hero
-    document.getElementById('display-logo').innerHTML = `${portfolioData.general.logo}<span>.</span>`;
+    // --- LOGICA NOUĂ DE RANDARE LOGO ---
+    const logoContainer = document.getElementById('display-logo');
+    let logoHTML = '';
+
+    // 1. Dacă există imagine, o adăugăm prima
+    if (portfolioData.general.logoImage) {
+        logoHTML += `<img src="${portfolioData.general.logoImage}" alt="Logo profile">`;
+    }
+
+    // 2. Adăugăm întotdeauna textul după imagine
+    logoHTML += `${portfolioData.general.logo}<span>.</span>`;
+
+    logoContainer.innerHTML = logoHTML;
+    // ------------------------------------
     document.getElementById('display-hero-badge').innerText = portfolioData.general.heroBadge;
     const title = portfolioData.general.heroTitle;
     document.getElementById('display-hero-title').innerHTML = title.replace("experiențe digitale", "<span>experiențe digitale</span>");
@@ -287,4 +300,15 @@ async function exportHTML() {
 function copyEmail() {
     const email = portfolioData.design.email;
     navigator.clipboard.writeText(email).then(() => alert("Email copiat!"));
+}
+
+function handleLogoUpload(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            portfolioData.general.logoImage = e.target.result;
+            renderAll();
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }
