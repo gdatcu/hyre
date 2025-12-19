@@ -409,7 +409,7 @@ document.addEventListener('keydown', (e) => {
 
 function setupShareLinks() {
     // Folosim link-ul de bază al aplicației Hyre (sau link-ul tău de GitHub)
-    const appUrl = "https://hyre-builder.netlify.app"; 
+    const appUrl = "https://apps.qualiadept.eu/hyre/"; 
     const message = "Tocmai am folosit Hyre pentru a-mi genera un portofoliu Senior Grade! 🚀 Încearcă-l și tu:";
 
     const lnk = document.getElementById('share-linkedin');
@@ -420,7 +420,7 @@ function setupShareLinks() {
 }
 
 function copyHyreLink() {
-    const appUrl = "https://hyre-builder.netlify.app";
+    const appUrl = "https://apps.qualiadept.eu/hyre/";
     navigator.clipboard.writeText(appUrl).then(() => {
         const txt = document.getElementById('copy-text');
         txt.innerText = "Copiat! ✅";
