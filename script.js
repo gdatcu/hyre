@@ -311,54 +311,105 @@ function resetData() {
     }
 }
 
-// 7. EXPORT HTML
-function exportHTML() {
-    // 1. Clonăm documentul actual pentru a nu strica vizualizarea live
-    const fullHTML = document.documentElement.outerHTML;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(fullHTML, 'text/html');
+// 7. EXPORT HTML (Varianta Finală - Single File Portable)
+async function exportHTML() {
+    // 1. Clonăm documentul pentru a lucra pe o copie curată
+    const docClone = document.documentElement.cloneNode(true);
 
-    // 2. Eliminăm elementele specifice editorului care nu trebuie să apară pe site-ul final
-    const sidebar = doc.getElementById('editor-sidebar');
-    const trigger = doc.getElementById('toggle-editor');
-    if (sidebar) sidebar.remove();
-    if (trigger) trigger.remove();
+    // 2. INTEGRARE CSS (Inlining)
+    let cssContent = "";
+    try {
+        const response = await fetch('style.css');
+        if (response.ok) cssContent = await response.text();
+    } catch (e) {
+        // Fallback: Citim direct din regulile încărcate în browser
+        for (const sheet of document.styleSheets) {
+            try {
+                if (!sheet.href || sheet.href.includes('style.css')) {
+                    for (const rule of sheet.cssRules) cssContent += rule.cssText + "\n";
+                }
+            } catch (err) {}
+        }
+    }
 
-    // 3. Pregătim datele SEO
+    const cssLink = docClone.querySelector('link[href="style.css"]');
+    if (cssLink && cssContent) {
+        const styleTag = document.createElement('style');
+        styleTag.textContent = cssContent;
+        cssLink.parentNode.replaceChild(styleTag, cssLink);
+    }
+
+    // 3. CURĂȚARE INTERFAȚĂ EDITOR
+    const toRemove = ['#editor-sidebar', '#toggle-editor', '#exit-preview-btn', '.editor-trigger-btn'];
+    toRemove.forEach(selector => {
+        const el = docClone.querySelector(selector);
+        if (el) el.remove();
+    });
+
+    // 4. CURĂȚARE ATRIBUTE INJECTATE DE EXTENSII (NordPass, etc.)
+    const cleanTags = (tag) => {
+        if(!tag) return;
+        Array.from(tag.attributes).forEach(attr => {
+            if (attr.name.startsWith('data-') && !attr.name.startsWith('data-lucide') && !attr.name.startsWith('data-year')) {
+                tag.removeAttribute(attr.name);
+            }
+        });
+    };
+    cleanTags(docClone);
+    cleanTags(docClone.querySelector('body'));
+
+    // 5. INTEGRARE JS ESENȚIAL (Visitor Runtime)
+    docClone.querySelectorAll('script').forEach(s => {
+        if (s.src && (s.src.includes('script.js') || s.src.includes('lucide'))) {
+            if (s.src.includes('script.js')) s.remove();
+        } else if (!s.src) {
+            s.remove();
+        }
+    });
+
+    const runtimeJS = "document.addEventListener('DOMContentLoaded', () => { " +
+        "if(typeof lucide !== 'undefined') lucide.createIcons(); " +
+        "window.addEventListener('scroll', () => { " +
+        "const bar = document.getElementById('scroll-progress-bar'); " +
+        "if(!bar) return; " +
+        "const winScroll = document.body.scrollTop || document.documentElement.scrollTop; " +
+        "const height = document.documentElement.scrollHeight - document.documentElement.clientHeight; " +
+        "const scrolled = (winScroll / height) * 100; " +
+        "bar.style.width = scrolled + '%'; " +
+        "if (scrolled > 99) bar.classList.add('is-finished'); " +
+        "else bar.classList.remove('is-finished'); " +
+        "}); }); " +
+        "function copyEmail() { " +
+        "const email = '" + (portfolioData.design.email || "") + "'; " +
+        "navigator.clipboard.writeText(email).then(() => alert('Email copiat!')); }";
+
+    const scriptTag = document.createElement('script');
+    scriptTag.textContent = runtimeJS;
+    docClone.querySelector('body').appendChild(scriptTag);
+
+    // 6. CONFIGURARE SEO
     const seoTitle = portfolioData.general.metaTitle || (portfolioData.general.logo + " | Portofoliu");
     const seoDesc = portfolioData.general.metaDescription || "";
     const ogImg = portfolioData.general.ogImage || "";
 
-    // 4. Actualizăm <title> și injectăm Meta Tag-urile în <head>
-    let head = doc.head;
+    const titleTag = docClone.querySelector('title');
+    if (titleTag) titleTag.innerText = seoTitle;
+
+    const seoMeta = '<meta name="description" content="' + seoDesc + '">' +
+                   '<meta property="og:title" content="' + seoTitle + '">' +
+                   '<meta property="og:description" content="' + seoDesc + '">' +
+                   '<meta property="og:image" content="' + ogImg + '">';
     
-    // Setăm titlul paginii
-    const existingTitle = doc.querySelector('title');
-    if (existingTitle) {
-        existingTitle.innerText = seoTitle;
-    }
+    docClone.querySelector('head').insertAdjacentHTML('beforeend', seoMeta);
 
-    // Injectăm tag-urile meta pentru SEO și LinkedIn
-    const seoTags = `
-        <meta name="description" content="${seoDesc}">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="${seoTitle}">
-        <meta property="og:description" content="${seoDesc}">
-        <meta property="og:image" content="${ogImg}">
-        <meta name="twitter:card" content="summary_large_image">
-    `;
-
-    head.insertAdjacentHTML('beforeend', seoTags);
-
-    // 5. Generăm fișierul și declanșăm descărcarea
-    const blob = new Blob([doc.documentElement.outerHTML], { type: 'text/html' });
+    // 7. DESCARCARE
+    const finalHTML = '<!DOCTYPE html>\n' + docClone.outerHTML;
+    const blob = new Blob([finalHTML], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = 'index.html';
     a.click();
-    
-    // Curățăm URL-ul creat
     URL.revokeObjectURL(url);
 }
 
@@ -487,3 +538,23 @@ function validateMetaTags() {
         descHint.style.color = "#10b981";
     }
 }
+
+// Actualizează funcția de scroll din script.js
+window.addEventListener('scroll', () => {
+    const progressBar = document.getElementById('scroll-progress-bar');
+    if (!progressBar) return;
+
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    
+    progressBar.style.width = scrolled + "%";
+
+    // Declanșăm efectele de final (Glow + Sparkle)
+    if (scrolled > 99) {
+        progressBar.classList.add('is-finished');
+    } else {
+        // Eliminăm clasa dacă utilizatorul urcă înapoi, pentru a putea re-declanșa scânteia
+        progressBar.classList.remove('is-finished');
+    }
+});

@@ -247,3 +247,56 @@ body.preview-active .editor-trigger-btn {
     height: 18px;
     color: var(--accent);
 }
+
+/* Stil Progress Bar */
+#scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px; /* Grosime de 3px conform cerinței */
+    background: transparent;
+    z-index: 10001; /* Peste navigație și editor */
+}
+
+/* Efect de strălucire când se ajunge la 100% */
+#scroll-progress-bar.is-finished {
+    box-shadow: 0 0 15px var(--accent), 0 0 5px var(--accent); /* Glow intens */
+    filter: brightness(1.2); /* Face culoarea mai vibrantă */
+}
+
+/* Adăugăm o tranziție lină pentru efect */
+#scroll-progress-bar {
+    transition: width 0.1s ease-out, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Containerul barei trebuie să permită vizualizarea scânteii */
+#scroll-progress-bar {
+    position: relative;
+    overflow: hidden; /* Esențial pentru a limita scânteia în interiorul barei */
+    transition: width 0.1s ease-out, box-shadow 0.3s ease;
+}
+
+/* Definirea scânteii (Sparkle) */
+#scroll-progress-bar.is-finished::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* Începe în afara barei, în stânga */
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.9), 
+        transparent
+    ); /* Creează un fascicul de lumină albă */
+    transform: skewX(-20deg); /* Înclinăm fasciculul pentru un aspect dinamic */
+    animation: sparkle-sweep 1.2s ease-out forwards; /* Rulează animația o singură dată */
+}
+
+/* Animația care trece scânteia peste bară */
+@keyframes sparkle-sweep {
+    0% { left: -150%; }
+    100% { left: 150%; } /* Trece complet prin bară spre dreapta */
+}
