@@ -8,6 +8,7 @@ const defaultData = {
         metaTitle: "",
         metaDescription: "",
         ogImage: "",
+        faviconImage: "", // Noua cheie pentru favicon
         heroBadge: "Disponibil pentru proiecte noi",
         heroTitle: "Transform idei în experiențe digitale memorabile.",
         heroDesc: "Sunt un Junior Developer axat pe detalii, performanță și un design care contează. Îmbin estetica cu funcționalitatea.",
@@ -74,10 +75,16 @@ function renderAll() {
 
     const favicon = document.querySelector('link[rel="icon"]');
     if (favicon) {
-        const acc = (portfolioData.design.accent || "#6366f1").replace('#', '%23');
-        favicon.href = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='${acc}'></rect><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='60' font-weight='800' fill='white'>H</text></svg>`;
+        if (portfolioData.general.faviconImage) {
+            // Dacă utilizatorul a încărcat o imagine, o folosim pe aceea
+            favicon.href = portfolioData.general.faviconImage;
+        } else {
+            // Altfel, rămânem la generația automată bazată pe prima literă
+            const acc = (portfolioData.design.accent || "#6366f1").replace('#', '%23');
+            const firstLetter = (portfolioData.general.logo || "H").charAt(0).toUpperCase();
+            favicon.href = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='${acc}'></rect><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='60' font-weight='800' fill='white'>${firstLetter}</text></svg>`;
+        }
     }
-
     // 3. Hero Section
     const heroTitle = portfolioData.general.heroTitle || "";
     document.getElementById('display-hero-badge').innerText = portfolioData.general.heroBadge || "";
@@ -558,3 +565,15 @@ window.addEventListener('scroll', () => {
         progressBar.classList.remove('is-finished');
     }
 });
+
+// Adaugă în script.js
+function handleFaviconUpload(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            portfolioData.general.faviconImage = e.target.result; // Salvare ca Base64
+            renderAll(); // Salvăm și actualizăm vizual
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}

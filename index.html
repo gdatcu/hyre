@@ -53,6 +53,13 @@
                         <label>Logo Text / Nume</label>
                         <input type="text" id="edit-logo">
                     </div>
+
+                    <div class="field-group">
+                        <label>Favicon (Imagine Tab Browser)</label>
+                        <input type="file" id="edit-favicon-file" accept="image/*" onchange="handleFaviconUpload(this)">
+                        <small style="color: var(--text-soft); font-size: 0.75rem;">Încarcă un fișier .png sau .ico (recomandat 32x32px).</small>
+                    </div>
+
                     <div class="field-group"><label>Badge Disponibilitate</label><input type="text" id="edit-hero-badge"></div>
                     <div class="field-group"><label>Titlu Principal</label><input type="text" id="edit-hero-title"></div>
                     <div class="field-group"><label>Descriere Hero</label><textarea id="edit-hero-desc"></textarea></div>

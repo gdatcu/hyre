@@ -1,49 +1,79 @@
-# Hyre | Senior Grade Portfolio Builder 🚀
+# HYRE. 🚀
+### Senior Grade Portfolio Builder for Developers
 
-**Hyre** is a premium, high-performance portfolio generator designed for developers who want a professional digital presence without the overhead of complex frameworks. Featuring a modern **Bento UI** layout and fluid **Mesh Gradients**, it ensures a "Senior Grade" first impression for recruiters and clients.
-
-## ✨ Key Features
-
-* **Bento-Style Grid:** A clean, organized, and responsive layout for showcasing projects and experience using modern grid aesthetics.
-* **Hybrid Dynamic Logo:** Supports both custom text logos and round profile images simultaneously for a personalized brand identity.
-* **Google Fonts Integration:** Real-time typography switching with built-in support for popular "Senior Grade" fonts like Inter, Space Grotesk, and Playfair Display.
-* **Mesh Gradient Backgrounds:** High-performance, fixed radial gradients that provide a fluid and premium visual experience.
-* **Real-Time Dashboard:** An interactive editor sidebar allowing instant customization of professional info, tech stacks, and styles.
-* **LocalStorage Persistence:** Automatically saves progress in the browser under the key `hyre_builder_final_v1` to prevent data loss on refresh.
-* **Dynamic Favicon:** The site icon automatically updates its color in real-time to match your chosen brand accent.
-* **Single-File Export:** Packages the entire portfolio—including all internal CSS, Google Fonts logic, and images (Base64)—into a single, standalone `index.html` file ready for instant hosting.
-
-## 🛠️ Built With
-
-* **Vanilla JavaScript:** Lightweight state management and dynamic DOM rendering with zero dependencies.
-* **CSS3 Custom Properties:** Fully themed using CSS variables (`--accent`, `--bg`, `--font-main`) for instant style updates.
-* **Lucide Icons:** Clean, consistent vector icons integrated for a professional UI experience.
-* **Devicons:** Integrated developer technology icons for a high-quality tech stack marquee.
-
-## 📦 How It Works
-
-1.  **Personalize:** Open the **Hyre Dashboard** to fill in your professional details, career milestones, and project highlights.
-2.  **Branding:** Upload a profile picture (rendered as a sleek circle) and set your professional name to establish your identity.
-3.  **Style:** Choose your accent color and typography; the UI, font-load, and favicon update instantly to reflect your brand.
-4.  **Auto-Save:** Every keystroke triggers a save to your browser's local storage, allowing you to pick up where you left off.
-5.  **Export:** Click **"Export Site"** to download a production-ready `index.html` file with all styles and scripts embedded.
-
-## 💻 Installation & Usage
-
-Hyre is built with pure web technologies and requires no complex installation.
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/yourusername/hyre.git](https://github.com/yourusername/hyre.git)
-    ```
-2.  **Run the project:**
-    Open `index.html` in your browser.
-    *Note: For the **Export** function to work, please run the project via a local server (e.g., VS Code Live Server) to allow the script to read the CSS file.*
-3.  **Customize and Launch!**
-
-## 📄 License
-
-This project is open-source and available under the **MIT License**.
+**Hyre** este un instrument modern de tip "Portfolio Builder" conceput special pentru developeri. Acesta generează un portofoliu static de înaltă performanță, bazat pe un design de tip **Bento Grid**, gata de a fi exportat și găzduit instantaneu.
 
 ---
-*Created with ❤️ for the developer community.*
+
+## ✨ Funcționalități Principale
+
+### 🛠️ Hyre Dashboard (Editor Live)
+- **Personalizare Vizuală:** Schimbă logo-ul (text sau imagine), culorile de accent și fundalul în timp real.
+- **Sistem de Reordonare:** Alege ordinea secțiunilor (Proiecte, Experiență, Tech) pentru a-ți evidenția punctele forte.
+- **Google Fonts Integration:** Selectează fontul dorit dintr-o listă curatoriată pentru un aspect modern.
+
+### 🔍 SEO & Social Preview (LinkedIn Ready)
+- **Meta Tags:** Configurează Titlul și Descrierea pentru o indexare optimă în Google.
+- **Open Graph (OG) Image:** Încarcă o imagine de previzualizare care va apărea automat când distribui link-ul pe LinkedIn sau X.
+- **Favicon Custom:** Personalizează iconița din tab-ul browserului pentru un branding complet.
+- **SEO Validation:** Feedback în timp real privind lungimea optimă a titlului și descrierii.
+
+### 💎 UX & UI Premium
+- **Bento Grid Design:** O structură vizuală curată și ierarhizată, inspirată de cele mai noi trenduri de design.
+- **Scroll Progress Bar:** Indicator discret de progres cu animație de tip "Sparkle" și "Glow" la finalizarea lecturii.
+- **Preview Mode:** Vezi versiunea finală a site-ului fără elementele editorului înainte de export.
+- **Dark Mode Docs:** Pagina de documentație include un mod întunecat pentru confortul vizual al developerilor.
+
+### 📤 Export & Deployment
+- **Single File Export:** Generează un fișier `index.html` complet independent (CSS și JS integrate), eliminând dependențele externe.
+- **Clean Code:** Logica de export curăță automat atributele injectate de extensiile browserului (ex: NordPass, Grammarly).
+- **Formspree Integration:** Formular de contact funcțional prin simpla introducere a unui ID.
+
+---
+
+## 🗺️ Roadmap: Viitorul Hyre
+
+Ne propunem să extindem Hyre dincolo de un generator static. Iată ce urmează:
+
+| Faza | Funcționalitate | Status |
+| :--- | :--- | :--- |
+| **V1.5** | Mai multe teme Bento predefinite | 🕒 În plan |
+| **V2.0** | Sistem de Autentificare (User Accounts) | 🚀 În cercetare |
+| **V2.5** | Bază de date persistentă (Cloud Save) | 🕒 În plan |
+| **V3.0** | Integrare directă cu GitHub API (Auto-deploy) | 🕒 În plan |
+| **V3.5** | Analytics Dashboard integrat | 🕒 În plan |
+
+---
+
+## 🤝 Contribuții
+
+Hyre este un proiect creat pentru comunitate. Contribuțiile de orice fel sunt binevenite!
+
+1. **Bug Reports:** Ai găsit o problemă? Deschide un *Issue*.
+2. **Feature Requests:** Ai o idee pentru o secțiune Bento nouă? Spune-ne!
+3. **Pull Requests:** Vrei să îmbunătățești codul? Trimite un PR.
+   - Te rugăm să urmezi stilul de codare existent (Vanilla JS).
+   - Asigură-te că orice funcție nouă este testată și responsivă.
+
+---
+
+## 🚀 Cum se folosește
+
+1. **Configurare:** Deschide `index.html` și folosește butonul "Personalizează Site-ul".
+2. **Editare:** Completează-ți experiența, tehnologiile și proiectele în Dashboard.
+3. **SEO:** Configurează setările SEO pentru a te asigura că portofoliul arată bine pe rețelele sociale.
+4. **Export:** Apasă butonul "Exportă index.html" pentru a obține fișierul final.
+5. **Lansare:** Încarcă fișierul pe GitHub Pages, Netlify sau Vercel (vezi [Ghidul de Lansare](docs.html)).
+
+---
+
+## 🛠️ Stack Tehnic
+- **HTML5 / CSS3:** Layout bazat pe Flexbox și CSS Grid.
+- **Vanilla JavaScript:** Logică de editare și export fără framework-uri grele.
+- **Lucide Icons:** Iconițe vectoriale curate și moderne.
+- **Devicons:** Logo-uri oficiale pentru tehnologii.
+
+---
+
+## 📄 Licență
+Creat cu ❤️ pentru comunitatea de developeri. Proiectul este Open Source.
