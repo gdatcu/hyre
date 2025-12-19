@@ -37,7 +37,16 @@
 
             <div class="editor-body">
                 <div id="tab-general" class="tab-pane active">
-                    <div class="field-group"><label>Nume / Logo</label><input type="text" id="edit-logo"></div>
+                    <div class="field-group">
+                        <label>Logo Imagine (Opțional)</label>
+                        <input type="file" id="edit-logo-file" accept="image/*" onchange="handleLogoUpload(this)">
+                        <small style="color: #666; font-size: 0.8em;">Va fi afișată rotundă lângă text.</small>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Logo Text / Nume</label>
+                        <input type="text" id="edit-logo">
+                    </div>
                     <div class="field-group"><label>Badge Disponibilitate</label><input type="text" id="edit-hero-badge"></div>
                     <div class="field-group"><label>Titlu Principal</label><input type="text" id="edit-hero-title"></div>
                     <div class="field-group"><label>Descriere Hero</label><textarea id="edit-hero-desc"></textarea></div>
