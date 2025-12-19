@@ -140,6 +140,8 @@ function renderAll() {
     // Apelăm funcția de setup la randare
     // Adaugă la finalul funcției renderAll():
     setupShareLinks();
+
+    validateMetaTags(); // Actualizează sugestiile SEO
 }
 
 // 4. EDITOR LOGIC
@@ -446,5 +448,42 @@ function handleOGImageUpload(input) {
             renderAll();
         };
         reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Adaugă această funcție în script.js
+function validateMetaTags() {
+    const title = portfolioData.general.metaTitle || "";
+    const desc = portfolioData.general.metaDescription || "";
+    
+    const titleHint = document.getElementById('meta-title-hint');
+    const descHint = document.getElementById('meta-desc-hint');
+
+    // Validare Titlu (Ideal: 30 - 60 caractere)
+    if (title.length === 0) {
+        titleHint.innerText = "";
+    } else if (title.length < 30) {
+        titleHint.innerText = `⚠️ Prea scurt (${title.length} caractere). Minim recomandat: 30.`;
+        titleHint.style.color = "#f59e0b"; // Portocaliu
+    } else if (title.length > 60) {
+        titleHint.innerText = `⚠️ Prea lung (${title.length} caractere). Va fi tăiat de Google.`;
+        titleHint.style.color = "#ef4444"; // Roșu
+    } else {
+        titleHint.innerText = `✅ Perfect (${title.length} caractere).`;
+        titleHint.style.color = "#10b981"; // Verde
+    }
+
+    // Validare Descriere (Ideal: 120 - 160 caractere)
+    if (desc.length === 0) {
+        descHint.innerText = "";
+    } else if (desc.length < 120) {
+        descHint.innerText = `ℹ️ Recomandat: mai detaliat (${desc.length}/160).`;
+        descHint.style.color = "#6366f1"; // Accent color
+    } else if (desc.length > 160) {
+        descHint.innerText = `⚠️ Prea lungă (${desc.length} caractere). Va fi tăiată în previzualizări.`;
+        descHint.style.color = "#ef4444"; 
+    } else {
+        descHint.innerText = `✅ Lungime ideală (${desc.length} caractere).`;
+        descHint.style.color = "#10b981";
     }
 }
