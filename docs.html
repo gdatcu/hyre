@@ -79,6 +79,53 @@
             header h1 { font-size: 2.2rem; }
             header { padding: 40px 0 !important; }
         }
+        
+                /* STIL BUTON SUPORT CU ANIMAȚIE PULSE */
+        .support-floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            /* Activăm animația la fiecare 10 secunde */
+            animation: pulse-animation 10s infinite;
+        }
+
+        .support-floating-btn:hover {
+            transform: scale(1.05) translateY(-5px);
+            background: #4f46e5;
+        }
+
+        /* DEFINIREA ANIMAȚIEI PULSE */
+        @keyframes pulse-animation {
+            0%, 90%, 100% {
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                transform: scale(1);
+            }
+            93% {
+                box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); /* Folosește culoarea accent */
+                transform: scale(1.05);
+            }
+            96% {
+                transform: scale(1);
+            }
+        }
+
+        /* RESPONSIVE: Îl facem mai mic pe mobil */
+        @media (max-width: 480px) {
+            .support-floating-btn span { display: none; }
+            .support-floating-btn { padding: 15px; bottom: 20px; right: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -236,5 +283,9 @@
             lucide.createIcons();
         });
     </script>
+    <a href="mailto:emailul-tau@exemplu.com?subject=Suport Hyre" class="support-floating-btn">
+        <i data-lucide="help-circle"></i>
+        <span>Ai nevoie de ajutor?</span>
+    </a>
 </body>
 </html>
