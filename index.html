@@ -70,6 +70,16 @@
                 </div>
 
                 <div id="tab-design" class="tab-pane">
+                    <div class="field-group">
+                        <label>Font Principal</label>
+                        <select id="edit-font" onchange="updateFont(this.value)">
+                            <option value="Plus Jakarta Sans">Plus Jakarta Sans (Modern)</option>
+                            <option value="Inter">Inter (Minimalist)</option>
+                            <option value="Playfair Display">Playfair Display (Elegant)</option>
+                            <option value="Space Grotesk">Space Grotesk (Tech)</option>
+                            <option value="Outfit">Outfit (Geometric)</option>
+                        </select>
+                    </div>
                     <div class="field-group"><label>Culoare Accent</label><input type="color" id="edit-color-accent"></div>
                     <div class="field-group"><label>Culoare Fundal</label><input type="color" id="edit-color-bg"></div>
                     <div class="field-group"><label>Email Contact</label><input type="text" id="edit-email"></div>
