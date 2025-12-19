@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghid Complet de Lansare | Hyre</title>
+    <title id="page-title">Ghid Complet de Lansare | Hyre</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -80,7 +80,7 @@
             header { padding: 40px 0 !important; }
         }
         
-                /* STIL BUTON SUPORT CU ANIMAȚIE PULSE */
+        /* STIL BUTON SUPORT CU ANIMAȚIE PULSE */
         .support-floating-btn {
             position: fixed;
             bottom: 30px;
@@ -97,7 +97,6 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             z-index: 1000;
             transition: all 0.3s ease;
-            /* Activăm animația la fiecare 10 secunde */
             animation: pulse-animation 10s infinite;
         }
 
@@ -106,22 +105,12 @@
             background: #4f46e5;
         }
 
-        /* DEFINIREA ANIMAȚIEI PULSE */
         @keyframes pulse-animation {
-            0%, 90%, 100% {
-                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-                transform: scale(1);
-            }
-            93% {
-                box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); /* Folosește culoarea accent */
-                transform: scale(1.05);
-            }
-            96% {
-                transform: scale(1);
-            }
+            0%, 90%, 100% { box-shadow: 0 10px 25px rgba(0,0,0,0.2); transform: scale(1); }
+            93% { box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); transform: scale(1.05); }
+            96% { transform: scale(1); }
         }
 
-        /* RESPONSIVE: Îl facem mai mic pe mobil */
         @media (max-width: 480px) {
             .support-floating-btn span { display: none; }
             .support-floating-btn { padding: 15px; bottom: 20px; right: 20px; }
@@ -134,20 +123,27 @@
     <nav class="main-nav">
         <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
             <div class="logo">HYRE<span>.</span></div>
-            <div style="display: flex; gap: 10px; align-items: center;">
+            
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <div class="lang-selector-main">
+                    <input type="radio" name="docs-lang" value="ro" id="lang-ro" checked onchange="updateDocsLanguage('ro')">
+                    <label for="lang-ro">RO</label>
+                    <input type="radio" name="docs-lang" value="en" id="lang-en" onchange="updateDocsLanguage('en')">
+                    <label for="lang-en">EN</label>
+                </div>
                 <button onclick="toggleDarkMode()" id="theme-btn" class="dark-mode-toggle"><i data-lucide="moon"></i></button>
-                <a href="index.html" class="btn-small">← Înapoi la Editor</a>
+                <a href="index.html" class="btn-small" id="nav-back">← Înapoi la Editor</a>
             </div>
         </div>
     </nav>
 
     <main class="container">
         <header id="hero" style="padding: 80px 0 60px; text-align: left; align-items: flex-start;">
-            <div class="badge">Ghid Complet de Succes</div>
-            <h1>Salutare, <span>viitorule expert!</span> 🚀</h1>
-            <p style="max-width: 700px; margin-left: 0;">Ești la un pas de a avea un portofoliu care nu doar arată "Senior Grade", dar funcționează impecabil. Acest ghid te va purta prin procesul de personalizare și lansare, transformând fișierul tău într-o prezență online de neclintit.</p>
+            <div class="badge" id="hero-badge">Ghid Complet de Succes</div>
+            <h1 id="hero-title">Salutare, <span>viitorule expert!</span> 🚀</h1>
+            <p id="hero-desc" style="max-width: 700px; margin-left: 0;">Ești la un pas de a avea un portofoliu care nu doar arată "Senior Grade", dar funcționează impecabil. Acest ghid te va purta prin procesul de personalizare și lansare, transformând fișierul tău într-o prezență online de neclintit.</p>
             <div style="margin-top: 30px;">
-                <a href="hyre_docs.pdf" download class="btn-main" style="background: var(--text); color: var(--bg); text-decoration: none; padding: 15px 25px; border-radius: 12px; font-weight: 800; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <a href="hyre_docs_ro.pdf" download class="btn-main" id="btn-pdf" style="background: var(--text); color: var(--bg); text-decoration: none; padding: 15px 25px; border-radius: 12px; font-weight: 800; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
                     <i data-lucide="file-down"></i> Descarcă Ghidul PDF Exhaustiv
                 </a>
             </div>
@@ -156,32 +152,32 @@
         <div class="docs-grid">
             <div class="bento-item large">
                 <div class="step-number">1</div>
-                <h3><i data-lucide="palette"></i> Personalizarea Brandului Unic</h3>
-                <p style="margin-bottom: 15px;">Totul începe cu butonul <strong>"Personalizează Site-ul"</strong> situat în colțul ecranului.</p>
-                <ul>
-                    <li><strong>Identitate Vizuală:</strong> Încarcă o fotografie de profil (afișată rotund într-un cerc elegant) și setează logo-ul text lângă ea.</li>
-                    <li><strong>Stil și Fonturi:</strong> Alege o culoare de accent care să te definească și selectează fontul preferat din Google Fonts pentru a schimba instantaneu "vibe-ul" paginii.</li>
-                    <li><strong>Conținut:</strong> Completează secțiunile de experiență, tehnologii și proiecte folosind editorul intuitiv.</li>
+                <h3 id="step1-h3"><i data-lucide="palette"></i> Personalizarea Brandului Unic</h3>
+                <p id="step1-p" style="margin-bottom: 15px;">Totul începe cu butonul <strong>"Personalizează Site-ul"</strong> situat în colțul ecranului.</p>
+                <ul id="step1-ul">
+                    <li id="step1-li1"><strong>Identitate Vizuală:</strong> Încarcă o fotografie de profil (afișată rotund într-un cerc elegant) și setează logo-ul text lângă ea.</li>
+                    <li id="step1-li2"><strong>Stil și Fonturi:</strong> Alege o culoare de accent care să te definească și selectează fontul preferat din Google Fonts pentru a schimba instantaneu "vibe-ul" paginii.</li>
+                    <li id="step1-li3"><strong>Conținut:</strong> Completează secțiunile de experiență, tehnologii și proiecte folosind editorul intuitiv.</li>
                 </ul>
             </div>
 
             <div class="bento-item">
                 <div class="step-number">2</div>
-                <h3><i data-lucide="mail"></i> Activează Contactul</h3>
-                <p>Ai nevoie de un ID de la <strong>Formspree</strong> pentru a primi mesaje direct în inbox:</p>
-                <ul>
-                    <li>Creează un cont gratuit pe <code>formspree.io</code>.</li>
-                    <li>Apasă pe <code>+ New Form</code>, dă-i un nume (ex: "My Portfolio") și introdu email-ul tău.</li>
-                    <li>După creare, mergi la tab-ul <strong>Settings</strong> și copiază șirul de la <strong>Form ID</strong>.</li>
-                    <li>Lipește acest cod în câmpul <strong>Formspree ID</strong> din Dashboard-ul Hyre.</li>
+                <h3 id="step2-h3"><i data-lucide="mail"></i> Activează Contactul</h3>
+                <p id="step2-p">Ai nevoie de un ID de la <strong>Formspree</strong> pentru a primi mesaje direct în inbox:</p>
+                <ul id="step2-ul">
+                    <li id="step2-li1">Creează un cont gratuit pe <code>formspree.io</code>.</li>
+                    <li id="step2-li2">Apasă pe <code>+ New Form</code>, dă-i un nume (ex: "My Portfolio") și introdu email-ul tău.</li>
+                    <li id="step2-li3">După creare, mergi la tab-ul <strong>Settings</strong> și copiază șirul de la <strong>Form ID</strong>.</li>
+                    <li id="step2-li4">Lipește acest cod în câmpul <strong>Formspree ID</strong> din Dashboard-ul Hyre.</li>
                 </ul>
             </div>
 
             <div class="bento-item large">
                 <div class="step-number">3</div>
-                <h3><i data-lucide="file-check"></i> Regula de Aur pentru CV/Resume</h3>
-                <p>Dacă dorești ca butonul <strong>"Descarcă CV"</strong> să funcționeze corect pentru vizitatori:</p>
-                <div class="warning-box">
+                <h3 id="step3-h3"><i data-lucide="file-check"></i> Regula de Aur pentru CV/Resume</h3>
+                <p id="step3-p">Dacă dorești ca butonul <strong>"Descarcă CV"</strong> să funcționeze corect pentru vizitatori:</p>
+                <div class="warning-box" id="step3-warn">
                     <i data-lucide="alert-triangle" style="flex-shrink: 0;"></i>
                     <span>Fișierul tău (ex: <code>resume.pdf</code>) <strong>TREBUIE</strong> să fie salvat în același folder cu fișierul <code>index.html</code>. Când încarci fișierele pe hosting, ele trebuie să coexiste în rădăcina proiectului.</span>
                 </div>
@@ -189,94 +185,308 @@
         </div>
 
         <div class="section-header">
-            <div class="section-title"><span>Pasul 4</span><h2>Opțiuni de Hosting: Rampa de Lansare</h2></div>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: var(--accent); font-weight: 600;">
+            <div class="section-title"><span id="sec4-step">Pasul 4</span><h2 id="sec4-title">Opțiuni de Hosting: Rampa de Lansare</h2></div>
+            <p id="sec4-hint" style="margin-top: 10px; font-size: 0.9rem; color: var(--accent); font-weight: 600;">
                 <i data-lucide="info" style="width: 16px; vertical-align: middle;"></i> 
-                Ești confuz? <a href="hyre_docs.pdf" target="_blank" style="color: inherit; text-decoration: underline;">Deschide Ghidul Vizual complet (PDF)</a> pentru toți pașii detaliați.
+                Ești confuz? <a href="hyre_docs_ro.pdf" target="_blank" style="color: inherit; text-decoration: underline;" id="sec4-link">Deschide Ghidul Vizual complet (PDF)</a> pentru toți pașii detaliați.
             </p>
         </div>
 
         <div class="docs-grid">
             <div class="bento-item">
                 <div class="step-number">A</div>
-                <h3>GitHub Pages <span class="host-badge bg-github">Solid</span></h3>
-                <ul>
-                    <li>Creează un depozit nou pe GitHub (ex: <code>my-portfolio</code>).</li>
-                    <li>Încarcă fișierele <code>index.html</code> și <code>resume.pdf</code> în rădăcină.</li>
-                    <li>Mergi la <strong>Settings > Pages</strong> și la "Build and deployment" alege sursa <strong>"Deploy from a branch"</strong>.</li>
-                    <li>Selectează branch-ul <code>main</code> și folderul <code>/(root)</code>, apoi apasă <strong>Save</strong>.</li>
+                <h3>GitHub Pages <span class="host-badge bg-github" id="badge-solid">Solid</span></h3>
+                <ul id="host-gh-ul">
+                    <li id="host-gh-li1">Creează un depozit nou pe GitHub (ex: <code>my-portfolio</code>).</li>
+                    <li id="host-gh-li2">Încarcă fișierele <code>index.html</code> și <code>resume.pdf</code> în rădăcină.</li>
+                    <li id="host-gh-li3">Mergi la <strong>Settings > Pages</strong> și la "Build and deployment" alege sursa <strong>"Deploy from a branch"</strong>.</li>
+                    <li id="host-gh-li4">Selectează branch-ul <code>main</code> și folderul <code>/(root)</code>, apoi apasă <strong>Save</strong>.</li>
                 </ul>
             </div>
 
             <div class="bento-item">
                 <div class="step-number">B</div>
-                <h3>Netlify Drop <span class="host-badge bg-netlify">Rapid</span></h3>
-                <ul>
-                    <li>Trage folderul cu fișierele tale direct pe <strong>Netlify Drop</strong>.</li>
-                    <li><strong>⚠️ Atenție:</strong> Fă-ți cont gratuit, altfel site-ul expiră după 1 oră! Fă-ți cont pentru a-l păstra online permanent.</li>
-                    <li>După deploy, mergi la <strong>Domain management > Edit site name</strong> pentru a obține adresa <code>numele-tau.netlify.app</code>.</li>
+                <h3>Netlify Drop <span class="host-badge bg-netlify" id="badge-rapid">Rapid</span></h3>
+                <ul id="host-nf-ul">
+                    <li id="host-nf-li1">Trage folderul cu fișierele tale direct pe <strong>Netlify Drop</strong>.</li>
+                    <li id="host-nf-li2"><strong>⚠️ Atenție:</strong> Fă-ți cont gratuit, altfel site-ul expiră după 1 oră! Fă-ți cont pentru a-l păstra online permanent.</li>
+                    <li id="host-nf-li3">După deploy, mergi la <strong>Domain management > Edit site name</strong> pentru a obține adresa <code>numele-tau.netlify.app</code>.</li>
                 </ul>
             </div>
 
             <div class="bento-item">
                 <div class="step-number">C</div>
-                <h3>Vercel <span class="host-badge bg-vercel">Modern</span></h3>
-                <ul>
-                    <li>Intră pe <code>vercel.com</code> și alege <strong>"Continue with GitHub"</strong>.</li>
-                    <li>Importă depozitul de pe GitHub și apasă <strong>Deploy</strong>.</li>
-                    <li><strong>Sincronizare Magică:</strong> Orice modificare (Push) pe GitHub va actualiza automat site-ul live.</li>
-                    <li>Schimbă subdomeniul în <code>nume.vercel.app</code> din <strong>Settings > Domains</strong>.</li>
+                <h3>Vercel <span class="host-badge bg-vercel" id="badge-modern">Modern</span></h3>
+                <ul id="host-vc-ul">
+                    <li id="host-vc-li1">Intră pe <code>vercel.com</code> și alege <strong>"Continue with GitHub"</strong>.</li>
+                    <li id="host-vc-li2">Importă depozitul de pe GitHub și apasă <strong>Deploy</strong>.</li>
+                    <li id="host-vc-li3"><strong>Sincronizare Magică:</strong> Orice modificare (Push) pe GitHub va actualiza automat site-ul live.</li>
+                    <li id="host-vc-li4">Schimbă subdomeniul în <code>nume.vercel.app</code> din <strong>Settings > Domains</strong>.</li>
                 </ul>
             </div>
         </div>
 
         <div class="section-header">
-            <div class="section-title"><span>Resurse</span><h2>Unelte pentru un Design Premium</h2></div>
+            <div class="section-title"><span id="sec-res-step">Resurse</span><h2 id="sec-res-title">Unelte pentru un Design Premium</h2></div>
         </div>
         <div class="docs-grid">
             <div class="bento-item">
-                <h3><i data-lucide="palette"></i> Culori</h3>
-                <p>Folosește <strong>Coolors.co</strong> sau <strong>Adobe Color</strong> pentru a găsi combinații armonioase care să devină culoarea ta de accent.</p>
+                <h3 id="res-colors-h3"><i data-lucide="palette"></i> Culori</h3>
+                <p id="res-colors-p">Folosește <strong>Coolors.co</strong> sau <strong>Adobe Color</strong> pentru a găsi combinații armonioase care să devină culoarea ta de accent.</p>
             </div>
             <div class="bento-item">
                 <h3><i data-lucide="image"></i> Imagini</h3>
-                <p>Descarcă fotografii profesionale de pe <strong>Unsplash</strong> sau <strong>Pexels</strong> pentru a-ți ilustra proiectele la calitate maximă.</p>
+                <p id="res-images-p">Descarcă fotografii profesionale de pe <strong>Unsplash</strong> sau <strong>Pexels</strong> pentru a-ți ilustra proiectele la calitate maximă.</p>
             </div>
             <div class="bento-item">
-                <h3><i data-lucide="box"></i> Iconițe Tech</h3>
-                <p>Găsește logo-uri pentru orice tehnologie pe <strong>Devicon.dev</strong> sau iconițe vectoriale pe <strong>Lucide.dev</strong>.</p>
+                <h3 id="res-icons-h3"><i data-lucide="box"></i> Iconițe Tech</h3>
+                <p id="res-icons-p">Găsește logo-uri pentru orice tehnologie pe <strong>Devicon.dev</strong> sau iconițe vectoriale pe <strong>Lucide.dev</strong>.</p>
             </div>
         </div>
 
         <div class="section-header">
-            <div class="section-title"><span>Final</span><h2>Strategie & FAQ</h2></div>
+            <div class="section-title"><span id="sec-faq-step">Final</span><h2 id="sec-faq-title">Strategie & FAQ</h2></div>
         </div>
         <div class="docs-grid" style="margin-bottom: 80px;">
             <div class="bento-item">
-                <h3><i data-lucide="target"></i> Calitate > Cantitate</h3>
-                <p>Nu lista 20 de proiecte mici. Alege 3-4 proiecte complexe unde poți explica <strong>arhitectura</strong> și deciziile tehnice luate.</p>
+                <h3 id="faq-q-h3"><i data-lucide="target"></i> Calitate > Cantitate</h3>
+                <p id="faq-q-p">Nu lista 20 de proiecte mici. Alege 3-4 proiecte complexe unde poți explica <strong>arhitectura</strong> și deciziile tehnice luate.</p>
             </div>
             <div class="bento-item">
-                <h3><i data-lucide="message-square"></i> Metoda STAR</h3>
-                <p>Folosește Situation, Task, Action, Result în descrierea proiectelor tale pentru un impact maxim asupra recrutorilor.</p>
+                <h3 id="faq-star-h3"><i data-lucide="message-square"></i> Metoda STAR</h3>
+                <p id="faq-star-p">Folosește Situation, Task, Action, Result în descrierea proiectelor tale pentru un impact maxim asupra recrutorilor.</p>
             </div>
             <div class="bento-item">
-                <h3><i data-lucide="image"></i> Poza nu apare?</h3>
-                <p>Hyre salvează imaginea ca <strong>Base64</strong> direct în HTML. Re-încarcă poza în dashboard și exportă din nou dacă aceasta lipsește.</p>
+                <h3 id="faq-img-h3"><i data-lucide="image"></i> Poza nu apare?</h3>
+                <p id="faq-img-p">Hyre salvează imaginea ca <strong>Base64</strong> direct în HTML. Re-încarcă poza în dashboard și exportă din nou dacă aceasta lipsește.</p>
             </div>
             <div class="bento-item">
-                <h3><i data-lucide="trash-2"></i> Resetare Date</h3>
-                <p>Butonul <strong>"Resetează Progresul"</strong> din Dashboard șterge definitiv datele din LocalStorage-ul browserului.</p>
+                <h3 id="faq-reset-h3"><i data-lucide="trash-2"></i> Resetare Date</h3>
+                <p id="faq-reset-p">Butonul <strong>"Resetează Progresul"</strong> din Dashboard șterge definitiv datele din LocalStorage-ul browserului.</p>
             </div>
         </div>
     </main>
 
     <footer style="text-align: center; padding: 60px 0; border-top: 1px solid var(--border);">
-        <p style="font-weight: 800; color: var(--text);">Ești gata să cucerești internetul! 🚀</p>
-        <p style="font-size: 0.8rem;">Creat cu ❤️ pentru comunitatea de developeri.</p>
+        <p id="footer-ready" style="font-weight: 800; color: var(--text);">Ești gata să cucerești internetul! 🚀</p>
+        <p id="footer-made" style="font-size: 0.8rem;">Creat cu ❤️ pentru comunitatea de developeri.</p>
     </footer>
 
     <script>
+        const translationsDocs = {
+            ro: {
+                pageTitle: "Ghid Complet de Lansare | Hyre",
+                navBack: "← Înapoi la Editor",
+                heroBadge: "Ghid Complet de Succes",
+                heroTitle: "Salutare, <span>viitorule expert!</span> 🚀",
+                heroDesc: "Ești la un pas de a avea un portofoliu care nu doar arată \"Senior Grade\", dar funcționează impecabil. Acest ghid te va purta prin procesul de personalizare și lansare, transformând fișierul tău într-o prezență online de neclintit.",
+                pdfUrl: "hyre_docs_ro.pdf",
+                btnPdf: "<i data-lucide=\"file-down\"></i> Descarcă Ghidul PDF Exhaustiv",
+                step1H3: "<i data-lucide=\"palette\"></i> Personalizarea Brandului Unic",
+                step1P: "Totul începe cu butonul <strong>\"Personalizează Site-ul\"</strong> situat în colțul ecranului.",
+                step1Li1: "<strong>Identitate Vizuală:</strong> Încarcă o fotografie de profil (afișată rotund într-un cerc elegant) și setează logo-ul text lângă ea.",
+                step1Li2: "<strong>Stil și Fonturi:</strong> Alege o culoare de accent care să te definească și selectează fontul preferat din Google Fonts pentru a schimba instantaneu \"vibe-ul\" paginii.",
+                step1Li3: "<strong>Conținut:</strong> Completează secțiunile de experiență, tehnologii și proiecte folosind editorul intuitiv.",
+                step2H3: "<i data-lucide=\"mail\"></i> Activează Contactul",
+                step2P: "Ai nevoie de un ID de la <strong>Formspree</strong> pentru a primi mesaje direct în inbox:",
+                step2Li1: "Creează un cont gratuit pe <code>formspree.io</code>.",
+                step2Li2: "Apasă pe <code>+ New Form</code>, dă-i un nume (ex: \"My Portfolio\") și introdu email-ul tău.",
+                step2Li3: "După creare, mergi la tab-ul <strong>Settings</strong> și copiază șirul de la <strong>Form ID</strong>.",
+                step2Li4: "Lipește acest cod în câmpul <strong>Formspree ID</strong> din Dashboard-ul Hyre.",
+                step3H3: "<i data-lucide=\"file-check\"></i> Regula de Aur pentru CV/Resume",
+                step3P: "Dacă dorești ca butonul <strong>\"Descarcă CV\"</strong> să funcționeze corect pentru vizitatori:",
+                step3Warn: "<i data-lucide=\"alert-triangle\"></i> <span>Fișierul tău (ex: <code>resume.pdf</code>) <strong>TREBUIE</strong> să fie salvat în același folder cu fișierul <code>index.html</code>. Când încarci fișierele pe hosting, ele trebuie să coexiste în rădăcina proiectului.</span>",
+                sec4Step: "Pasul 4",
+                sec4Title: "Opțiuni de Hosting: Rampa de Lansare",
+                sec4Hint: "<i data-lucide=\"info\"></i> Ești confuz? <a href=\"hyre_docs_ro.pdf\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\" id=\"sec4-link\">Deschide Ghidul Vizual complet (PDF)</a> pentru toți pașii detaliați.",
+                badgeSolid: "Solid",
+                hostGhLi1: "Creează un depozit nou pe GitHub (ex: <code>my-portfolio</code>).",
+                hostGhLi2: "Încarcă fișierele <code>index.html</code> și <code>resume.pdf</code> în rădăcină.",
+                hostGhLi3: "Mergi la <strong>Settings > Pages</strong> și la \"Build and deployment\" alege sursa <strong>\"Deploy from a branch\"</strong>.",
+                hostGhLi4: "Selectează branch-ul <code>main</code> și folderul <code>/(root)</code>, apoi apasă <strong>Save</strong>.",
+                badgeRapid: "Rapid",
+                hostNfLi1: "Trage folderul cu fișierele tale direct pe <strong>Netlify Drop</strong>.",
+                hostNfLi2: "<strong>⚠️ Atenție:</strong> Fă-ți cont gratuit, altfel site-ul expiră după 1 oră! Fă-ți cont pentru a-l păstra online permanent.",
+                hostNfLi3: "După deploy, mergi la <strong>Domain management > Edit site name</strong> pentru a obține adresa <code>numele-tau.netlify.app</code>.",
+                badgeModern: "Modern",
+                hostVcLi1: "Intră pe <code>vercel.com</code> și alege <strong>\"Continue with GitHub\"</strong>.",
+                hostVcLi2: "Importă depozitul de pe GitHub și apasă <strong>Deploy</strong>.",
+                hostVcLi3: "<strong>Sincronizare Magică:</strong> Orice modificare (Push) pe GitHub va actualiza automat site-ul live.",
+                hostVcLi4: "Schimbă subdomeniul în <code>nume.vercel.app</code> din <strong>Settings > Domains</strong>.",
+                secResStep: "Resurse",
+                secResTitle: "Unelte pentru un Design Premium",
+                resColorsH3: "<i data-lucide=\"palette\"></i> Culori",
+                resColorsP: "Folosește <strong>Coolors.co</strong> sau <strong>Adobe Color</strong> pentru a găsi combinații armonioase care să devină culoarea ta de accent.",
+                resImagesH3: "<i data-lucide=\"image\"></i> Imagini",
+                resImagesP: "Descarcă fotografii profesionale de pe <strong>Unsplash</strong> sau <strong>Pexels</strong> pentru a-ți ilustra proiectele la calitate maximă.",
+                resIconsH3: "<i data-lucide=\"box\"></i> Iconițe Tech",
+                resIconsP: "Găsește logo-uri pentru orice tehnologie pe <strong>Devicon.dev</strong> sau iconițe vectoriale pe <strong>Lucide.dev</strong>.",
+                secFaqStep: "Final",
+                secFaqTitle: "Strategie & FAQ",
+                faqQH3: "<i data-lucide=\"target\"></i> Calitate > Cantitate",
+                faqQP: "Nu lista 20 de proiecte mici. Alege 3-4 proiecte complexe unde poți explica <strong>arhitectura</strong> și deciziile tehnice luate.",
+                faqStarH3: "<i data-lucide=\"message-square\"></i> Metoda STAR",
+                faqStarP: "Folosește Situation, Task, Action, Result în descrierea proiectelor tale pentru un impact maxim asupra recrutorilor.",
+                faqImgH3: "<i data-lucide=\"image\"></i> Poza nu apare?",
+                faqImgP: "Hyre salvează imaginea ca <strong>Base64</strong> direct în HTML. Re-încarcă poza în dashboard și exportă din nou dacă aceasta lipsește.",
+                faqResetH3: "<i data-lucide=\"trash-2\"></i> Resetare Date",
+                faqResetP: "Butonul <strong>\"Resetează Progresul\"</strong> din Dashboard șterge definitiv datele din LocalStorage-ul browserului.",
+                footerReady: "Ești gata să cucerești internetul! 🚀",
+                footerMade: "Creat cu ❤️ pentru comunitatea de developeri.",
+                supportBtn: "<i data-lucide=\"help-circle\"></i> <span>Ai nevoie de ajutor?</span>"
+            },
+            en: {
+                pageTitle: "Complete Launch Guide | Hyre",
+                navBack: "← Back to Editor",
+                heroBadge: "Complete Success Guide",
+                heroTitle: "Hello, <span>future expert!</span> 🚀",
+                heroDesc: "You are one step away from having a portfolio that not only looks \"Senior Grade\" but also works perfectly. This guide will take you through the customization and launch process, turning your file into an unshakeable online presence.",
+                pdfUrl: "hyre_docs_en.pdf",
+                btnPdf: "<i data-lucide=\"file-down\"></i> Download Exhaustive PDF Guide",
+                step1H3: "<i data-lucide=\"palette\"></i> Customizing Your Unique Brand",
+                step1P: "It all starts with the <strong>\"Customize Website\"</strong> button located in the corner of the screen.",
+                step1Li1: "<strong>Visual Identity:</strong> Upload a professional profile photo and set your text logo next to it.",
+                step1Li2: "<strong>Style and Fonts:</strong> Choose an accent color that defines you and select your preferred font from Google Fonts to instantly change the page's vibe.",
+                step1Li3: "<strong>Content:</strong> Fill in the experience, technologies, and projects sections using the intuitive editor.",
+                step2H3: "<i data-lucide=\"mail\"></i> Activate Contact Section",
+                step2P: "You need a <strong>Formspree</strong> ID to receive messages directly in your inbox:",
+                step2Li1: "Create a free account at <code>formspree.io</code>.",
+                step2Li2: "Click on <code>+ New Form</code>, give it a name (e.g., \"My Portfolio\") and enter your email.",
+                step2Li3: "Once created, go to the <strong>Settings</strong> tab and copy the <strong>Form ID</strong> string.",
+                step2Li4: "Paste this code into the <strong>Formspree ID</strong> field in the Hyre Dashboard.",
+                step3H3: "<i data-lucide=\"file-check\"></i> The Golden Rule for CV/Resume",
+                step3P: "If you want the <strong>\"Download CV\"</strong> button to work correctly for visitors:",
+                step3Warn: "<i data-lucide=\"alert-triangle\"></i> <span>Your file (e.g., <code>resume.pdf</code>) <strong>MUST</strong> be saved in the same folder as the <code>index.html</code> file. When uploading files to hosting, they must coexist in the project root.</span>",
+                sec4Step: "Step 4",
+                sec4Title: "Hosting Options: The Launchpad",
+                sec4Hint: "<i data-lucide=\"info\"></i> Confused? <a href=\"hyre_docs_en.pdf\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\" id=\"sec4-link\">Open the complete Visual Guide (PDF)</a> for all detailed steps.",
+                badgeSolid: "Solid",
+                hostGhLi1: "Create a new repository on GitHub (e.g., <code>my-portfolio</code>).",
+                hostGhLi2: "Upload the <code>index.html</code> and <code>resume.pdf</code> files to the root.",
+                hostGhLi3: "Go to <strong>Settings > Pages</strong> and under \"Build and deployment\" choose the <strong>\"Deploy from a branch\"</strong> source.",
+                hostGhLi4: "Select the <code>main</code> branch and the <code>/(root)</code> folder, then press <strong>Save</strong>.",
+                badgeRapid: "Rapid",
+                hostNfLi1: "Drag your file folder directly onto <strong>Netlify Drop</strong>.",
+                hostNfLi2: "<strong>⚠️ Warning:</strong> Create a free account, otherwise the site expires after 1 hour! Create an account to keep it online permanently.",
+                hostNfLi3: "After deploy, go to <strong>Domain management > Edit site name</strong> to get your <code>your-name.netlify.app</code> address.",
+                badgeModern: "Modern",
+                hostVcLi1: "Go to <code>vercel.com</code> and choose <strong>\"Continue with GitHub\"</strong>.",
+                hostVcLi2: "Import your GitHub repository and press <strong>Deploy</strong>.",
+                hostVcLi3: "<strong>Magic Sync:</strong> Any future modification (Push) on GitHub will automatically update the live site.",
+                hostVcLi4: "Change the subdomain to <code>name.vercel.app</code> in <strong>Settings > Domains</strong>.",
+                secResStep: "Resources",
+                secResTitle: "Tools for Premium Design",
+                resColorsH3: "<i data-lucide=\"palette\"></i> Colors",
+                resColorsP: "Use <strong>Coolors.co</strong> or <strong>Adobe Color</strong> to find harmonious combinations to become your accent color.",
+                resImagesH3: "<i data-lucide=\"image\"></i> Images",
+                resImagesP: "Download professional photos from <strong>Unsplash</strong> or <strong>Pexels</strong> to illustrate your projects at maximum quality.",
+                resIconsH3: "<i data-lucide=\"box\"></i> Tech Icons",
+                resIconsP: "Find logos for any technology on <strong>Devicon.dev</strong> or vector icons on <strong>Lucide.dev</strong>.",
+                secFaqStep: "Final",
+                secFaqTitle: "Strategy & FAQ",
+                faqQH3: "<i data-lucide=\"target\"></i> Quality > Quantity",
+                faqQP: "Don't list 20 small projects. Choose 3-4 complex projects where you can explain the <strong>architecture</strong> and technical decisions made.",
+                faqStarH3: "<i data-lucide=\"message-square\"></i> STAR Method",
+                faqStarP: "Use Situation, Task, Action, Result in your project descriptions for maximum impact on recruiters.",
+                faqImgH3: "<i data-lucide=\"image\"></i> Image not appearing?",
+                faqImgP: "Hyre saves the image as <strong>Base64</strong> directly in the HTML. Re-upload the photo in the dashboard and export again if it's missing.",
+                faqResetH3: "<i data-lucide=\"trash-2\"></i> Reset Data",
+                faqResetP: "The <strong>\"Reset Progress\"</strong> button in the Dashboard permanently deletes data from the browser's LocalStorage.",
+                footerReady: "You're ready to conquer the internet! 🚀",
+                footerMade: "Created with ❤️ for the developer community.",
+                supportBtn: "<i data-lucide=\"help-circle\"></i> <span>Need help?</span>"
+            }
+        };
+
+        function updateDocsLanguage(lang) {
+            const t = translationsDocs[lang];
+            
+            // Text Elements
+            document.title = t.pageTitle;
+            document.getElementById('nav-back').innerText = t.navBack;
+            document.getElementById('hero-badge').innerText = t.heroBadge;
+            document.getElementById('hero-title').innerHTML = t.heroTitle;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            
+            // PDF Button & URL
+            document.getElementById('btn-pdf').innerHTML = t.btnPdf;
+            document.getElementById('btn-pdf').href = t.pdfUrl;
+            
+            // Step 1
+            document.getElementById('step1-h3').innerHTML = t.step1H3;
+            document.getElementById('step1-p').innerHTML = t.step1P;
+            document.getElementById('step1-li1').innerHTML = t.step1Li1;
+            document.getElementById('step1-li2').innerHTML = t.step1Li2;
+            document.getElementById('step1-li3').innerHTML = t.step1Li3;
+            
+            // Step 2
+            document.getElementById('step2-h3').innerHTML = t.step2H3;
+            document.getElementById('step2-p').innerHTML = t.step2P;
+            document.getElementById('step2-li1').innerHTML = t.step2Li1;
+            document.getElementById('step2-li2').innerHTML = t.step2Li2;
+            document.getElementById('step2-li3').innerHTML = t.step2Li3;
+            document.getElementById('step2-li4').innerHTML = t.step2Li4;
+
+            // Step 3
+            document.getElementById('step3-h3').innerHTML = t.step3H3;
+            document.getElementById('step3-p').innerHTML = t.step3P;
+            document.getElementById('step3-warn').innerHTML = t.step3Warn;
+
+            // Step 4
+            document.getElementById('sec4-step').innerText = t.sec4Step;
+            document.getElementById('sec4-title').innerText = t.sec4Title;
+            document.getElementById('sec4-hint').innerHTML = t.sec4Hint;
+            document.getElementById('badge-solid').innerText = t.badgeSolid;
+            document.getElementById('host-gh-li1').innerHTML = t.hostGhLi1;
+            document.getElementById('host-gh-li2').innerHTML = t.hostGhLi2;
+            document.getElementById('host-gh-li3').innerHTML = t.hostGhLi3;
+            document.getElementById('host-gh-li4').innerHTML = t.hostGhLi4;
+            
+            document.getElementById('badge-rapid').innerText = t.badgeRapid;
+            document.getElementById('host-nf-li1').innerHTML = t.hostNfLi1;
+            document.getElementById('host-nf-li2').innerHTML = t.hostNfLi2;
+            document.getElementById('host-nf-li3').innerHTML = t.hostNfLi3;
+            
+            document.getElementById('badge-modern').innerText = t.badgeModern;
+            document.getElementById('host-vc-li1').innerHTML = t.hostVcLi1;
+            document.getElementById('host-vc-li2').innerHTML = t.hostVcLi2;
+            document.getElementById('host-vc-li3').innerHTML = t.hostVcLi3;
+            document.getElementById('host-vc-li4').innerHTML = t.hostVcLi4;
+
+            // Resources
+            document.getElementById('sec-res-step').innerText = t.secResStep;
+            document.getElementById('sec-res-title').innerText = t.secResTitle;
+            document.getElementById('res-colors-h3').innerHTML = t.resColorsH3;
+            document.getElementById('res-colors-p').innerHTML = t.resColorsP;
+            document.getElementById('res-images-h3').innerHTML = t.resImagesH3;
+            document.getElementById('res-images-p').innerHTML = t.resImagesP;
+            document.getElementById('res-icons-h3').innerHTML = t.resIconsH3;
+            document.getElementById('res-icons-p').innerHTML = t.resIconsP;
+
+            // FAQ
+            document.getElementById('sec-faq-step').innerText = t.secFaqStep;
+            document.getElementById('sec-faq-title').innerText = t.secFaqTitle;
+            document.getElementById('faq-q-h3').innerHTML = t.faqQH3;
+            document.getElementById('faq-q-p').innerHTML = t.faqQP;
+            document.getElementById('faq-star-h3').innerHTML = t.faqStarH3;
+            document.getElementById('faq-star-p').innerHTML = t.faqStarP;
+            document.getElementById('faq-img-h3').innerHTML = t.faqImgH3;
+            document.getElementById('faq-img-p').innerHTML = t.faqImgP;
+            document.getElementById('faq-reset-h3').innerHTML = t.faqResetH3;
+            document.getElementById('faq-reset-p').innerHTML = t.faqResetP;
+
+            // Footer & Support
+            document.getElementById('footer-ready').innerText = t.footerReady;
+            document.getElementById('footer-made').innerText = t.footerMade;
+            document.querySelector('.support-floating-btn').innerHTML = t.supportBtn;
+
+            // Re-run Lucide
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            
+            // Save preference
+            localStorage.setItem('hyre_lang_pref', lang);
+        }
+
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle('dark-mode');
             const btn = document.getElementById('theme-btn');
@@ -284,11 +494,19 @@
             if (typeof lucide !== 'undefined') lucide.createIcons();
             localStorage.setItem('docs_theme', isDark ? 'dark' : 'light');
         }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Theme init
             if (localStorage.getItem('docs_theme') === 'dark') {
                 document.body.classList.add('dark-mode');
                 document.getElementById('theme-btn').innerHTML = '<i data-lucide="sun"></i>';
             }
+            
+            // Language init
+            const savedLang = localStorage.getItem('hyre_lang_pref') || 'ro';
+            document.getElementById(`lang-${savedLang}`).checked = true;
+            updateDocsLanguage(savedLang);
+            
             lucide.createIcons();
         });
     </script>
