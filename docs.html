@@ -16,7 +16,7 @@
             padding: 0 5%;
         }
 
-        /* GRIDUL SMART BENTO */
+        /* GRIDUL SMART BENTO - Adaptiv pentru orice ecran */
         .docs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
@@ -24,7 +24,7 @@
             margin-top: 40px;
         }
 
-        /* Span 2 coloane DOAR pe Desktop */
+        /* Span 2 coloane DOAR pe Desktop pentru echilibru vizual */
         @media (min-width: 1024px) {
             .bento-item.large { grid-column: span 2; }
         }
@@ -51,7 +51,7 @@
         .bg-netlify { background: #25c2a0; color: white; }
         .bg-vercel { background: #000000; color: white; }
 
-        /* AJUSTĂRI HERO PE MOBIL */
+        /* AJUSTĂRI PENTRU MOBIL */
         @media (max-width: 640px) {
             header h1 { font-size: 2.2rem; }
             header { padding: 40px 0 !important; }
@@ -61,47 +61,20 @@
 
         /* VARIABILE PENTRU DARK MODE */
         body.dark-mode {
-            --bg: #0f172a;
-            --text: #f8fafc;
-            --text-soft: #94a3b8;
-            --border: #1e293b;
-            --bg-soft: #1e293b;
+            --bg: #0f172a; --text: #f8fafc; --text-soft: #94a3b8;
+            --border: #1e293b; --bg-soft: #1e293b;
         }
 
-        /* Ajustări vizuale pentru elementele Bento în Dark Mode */
-        body.dark-mode .bento-item {
-            background: #1e293b;
-            border-color: #334155;
-        }
+        body.dark-mode .bento-item { background: #1e293b; border-color: #334155; }
+        body.dark-mode .warning-box { background: #1c1917; border-color: #44403c; color: #fdba74; }
+        body.dark-mode .main-nav { background: rgba(15, 23, 42, 0.8); border-color: #1e293b; }
 
-        body.dark-mode .warning-box {
-            background: #1c1917;
-            border-color: #44403c;
-            color: #fdba74;
-        }
-
-        body.dark-mode .main-nav {
-            background: rgba(15, 23, 42, 0.8);
-            border-color: #1e293b;
-        }
-
-        /* Stil pentru butonul de toggle */
         .dark-mode-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s;
+            background: none; border: 1px solid var(--border); color: var(--text);
+            cursor: pointer; padding: 8px; border-radius: 8px; display: flex;
+            align-items: center; transition: all 0.2s;
         }
-
-        .dark-mode-toggle:hover {
-            background: var(--accent);
-            color: white;
-        }
+        .dark-mode-toggle:hover { background: var(--accent); color: white; }
     </style>
 </head>
 <body>
@@ -129,12 +102,12 @@
         <div class="docs-grid">
             <div class="bento-item large">
                 <div class="step-number">1</div>
-                <h3><i data-lucide="palette"></i> Personalizarea Brandului</h3>
+                <h3><i data-lucide="palette"></i> Personalizarea: Brandul Tău Unic</h3>
                 <p style="margin-bottom: 15px;">Totul începe cu butonul <strong>"Personalizează Site-ul"</strong> situat în colțul ecranului.</p>
                 <ul>
                     <li><strong>Identitate Vizuală:</strong> Încarcă o fotografie de profil (afișată rotund) și setează logo-ul text lângă ea.</li>
-                    <li><strong>Stil și Fonturi:</strong> Alege o culoare de accent și un font Google Font pentru a schimba instantaneu vibe-ul site-ului.</li>
-                    <li><strong>Conținut:</strong> Completează experiența, tehnologiile și proiectele folosind editorul intuitiv.</li>
+                    <li><strong>Stil și Fonturi:</strong> Alege o culoare de accent și selectează fontul preferat din Google Fonts pentru a schimba vibe-ul.</li>
+                    <li><strong>Conținut:</strong> Completează secțiunile de experiență, tehnologii și proiecte folosind editorul intuitiv.</li>
                 </ul>
             </div>
 
@@ -144,8 +117,8 @@
                 <p>Ai nevoie de un ID de la <strong>Formspree</strong> pentru a primi mesaje în inbox:</p>
                 <ul>
                     <li>Creează un cont gratuit pe <code>formspree.io</code>.</li>
-                    <li>Apasă "+ New Form" și introdu email-ul tău.</li>
-                    <li>Din tab-ul <strong>Settings</strong>, copiază codul de la <strong>Form ID</strong>.</li>
+                    <li>Apasă pe <code>+ New Form</code>, dă-i un nume și introdu email-ul tău.</li>
+                    <li>Din tab-ul <strong>Settings</strong>, copiază șirul de la <strong>Form ID</strong>.</li>
                     <li>Lipește codul în câmpul <strong>Formspree ID</strong> din Dashboard.</li>
                 </ul>
             </div>
@@ -154,52 +127,71 @@
         <div class="bento-grid" style="margin-top: 20px;">
             <div class="bento-item large">
                 <div class="step-number">3</div>
-                <h3><i data-lucide="file-check"></i> Regula de Aur pentru CV</h3>
+                <h3><i data-lucide="file-check"></i> Regula de Aur pentru CV/Resume</h3>
                 <p>Dacă dorești ca butonul <strong>"Descarcă CV"</strong> să funcționeze corect pentru vizitatori:</p>
                 <div class="warning-box">
                     <i data-lucide="alert-triangle" style="flex-shrink: 0;"></i>
-                    <span>Fișierul PDF (ex: <code>resume.pdf</code>) <strong>TREBUIE</strong> să fie salvat în același folder cu <code>index.html</code>. Ambele trebuie să coexiste în rădăcina proiectului pe hosting.</span>
+                    <span>Fișierul tău (ex: <code>resume.pdf</code>) <strong>TREBUIE</strong> să fie salvat în același folder cu fișierul <code>index.html</code>. Ambele trebuie să coexiste în rădăcina proiectului pe hosting.</span>
                 </div>
             </div>
         </div>
 
         <div class="section-header">
-            <div class="section-title"><span>Pasul 4</span><h2>Opțiuni de Hosting</h2></div>
+            <div class="section-title"><span>Pasul 4</span><h2>Opțiuni de Hosting: Rampa de Lansare</h2></div>
         </div>
 
         <div class="docs-grid">
             <div class="bento-item">
                 <div class="step-number">A</div>
-                <h3 style="width: 100%;">GitHub Pages <span class="host-badge bg-github">Solid</span></h3>
+                <h3 style="display: flex; align-items: center;">GitHub Pages <span class="host-badge bg-github">Solid</span></h3>
                 <ul>
-                    <li>Creează un Repository nou (ex: <code>my-portfolio</code>).</li>
+                    <li>Creează un Repository nou pe GitHub (ex: <code>my-portfolio</code>).</li>
                     <li>Încarcă fișierele <code>index.html</code> și <code>resume.pdf</code>.</li>
                     <li>Mergi la <strong>Settings > Pages</strong>.</li>
-                    <li>La "Build and deployment", alege <strong>"Deploy from a branch"</strong>.</li>
+                    <li>La "Build and deployment", alege sursa <strong>"Deploy from a branch"</strong>.</li>
                     <li>Selectează branch-ul <code>main</code> și folderul <code>/(root)</code>, apoi apasă <strong>Save</strong>.</li>
                 </ul>
             </div>
 
             <div class="bento-item">
                 <div class="step-number">B</div>
-                <h3 style="width: 100%;">Netlify Drop <span class="host-badge bg-netlify">Rapid</span></h3>
+                <h3 style="display: flex; align-items: center;">Netlify Drop <span class="host-badge bg-netlify">Rapid</span></h3>
                 <ul>
-                    <li>Trage folderul cu fișierele tale direct pe <strong>Netlify Drop</strong>.</li>
+                    <li>Trage folderul cu fișierele direct pe <strong>Netlify Drop</strong>.</li>
                     <li><strong>⚠️ Atenție:</strong> Fă-ți cont gratuit, altfel site-ul expiră după 1 oră!</li>
                     <li>După deploy, mergi la <strong>Domain management</strong>.</li>
-                    <li>Apasă <strong>Options > Edit site name</strong> pentru a obține adresa <code>gdatcu.netlify.app</code>.</li>
+                    <li>Apasă <strong>Options > Edit site name</strong> pentru adresa <code>gdatcu.netlify.app</code>.</li>
                 </ul>
             </div>
 
             <div class="bento-item">
                 <div class="step-number">C</div>
-                <h3 style="width: 100%;">Vercel <span class="host-badge bg-vercel">Modern</span></h3>
+                <h3 style="display: flex; align-items: center;">Vercel <span class="host-badge bg-vercel">Modern</span></h3>
                 <ul>
                     <li>Intră pe <code>vercel.com</code> și alege <strong>"Continue with GitHub"</strong>.</li>
                     <li>Importă depozitul creat la pasul A și apasă <strong>Deploy</strong>.</li>
-                    <li><strong>Sincronizare:</strong> Orice modificare (Push) pe GitHub va actualiza automat site-ul!</li>
+                    <li><strong>Sincronizare:</strong> Orice modificare (Push) pe GitHub actualizează automat site-ul!</li>
                     <li>Mergi la <strong>Settings > Domains</strong> pentru a personaliza URL-ul.</li>
                 </ul>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 80px;">
+            <div class="section-title"><span>Resurse</span><h2>Unelte pentru un Design Premium</h2></div>
+        </div>
+
+        <div class="docs-grid">
+            <div class="bento-item">
+                <h3><i data-lucide="palette"></i> Palete de Culori</h3>
+                <p>Folosește <strong>Coolors.co</strong> sau <strong>Adobe Color</strong> pentru a găsi combinații armonioase care să devină culoarea ta de accent.</p>
+            </div>
+            <div class="bento-item">
+                <h3><i data-lucide="image"></i> Imagini Profesionale</h3>
+                <p>Descarcă imagini de înaltă rezoluție de pe <strong>Unsplash</strong> sau <strong>Pexels</strong> pentru a-ți ilustra proiectele la calitate maximă.</p>
+            </div>
+            <div class="bento-item">
+                <h3><i data-lucide="box"></i> Iconițe Tech</h3>
+                <p>Găsește logo-uri pentru orice tehnologie pe <strong>Devicon.dev</strong> sau iconițe vectoriale curate pe <strong>Lucide.dev</strong>.</p>
             </div>
         </div>
 
@@ -218,7 +210,7 @@
             </div>
             <div class="bento-item">
                 <h3><i data-lucide="clock"></i> Build Time?</h3>
-                <p>GitHub și Vercel au nevoie de 1-2 minute pentru a publica schimbările. Dă un refresh după acest interval.</p>
+                <p>GitHub și Vercel au nevoie de aproximativ 1-2 minute pentru a publica fișierele noi. Ai răbdare și dă refresh.</p>
             </div>
             <div class="bento-item">
                 <h3><i data-lucide="trash-2"></i> Cum resetez totul?</h3>
@@ -226,14 +218,14 @@
             </div>
         </div>
 
-        <section class="section-header" style="margin-top: 80px;">
+        <div class="section-header" style="margin-top: 80px;">
             <div class="section-title"><span>Strategie</span><h2>Sfaturi pentru un Portofoliu de Impact</h2></div>
-        </header>
+        </div>
 
         <div class="docs-grid" style="margin-bottom: 80px;">
             <div class="bento-item">
                 <h3><i data-lucide="target"></i> Calitate > Cantitate</h3>
-                <p>Nu lista 20 de proiecte mici din tutoriale. Alege 3-4 proiecte complexe unde poți explica <strong>arhitectura</strong> și <strong>deciziile tehnice</strong> luate.</p>
+                <p>Nu lista 20 de proiecte mici. Alege 3-4 proiecte complexe unde poți explica <strong>arhitectura</strong> și deciziile tehnice luate.</p>
             </div>
 
             <div class="bento-item">
@@ -248,7 +240,7 @@
 
             <div class="bento-item large">
                 <h3><i data-lucide="sparkles"></i> Branding Personal Consistent</h3>
-                <p>Asigură-te că imaginea de profil este profesională și că ai ales o <strong>Culoare de Accent</strong> care se potrivește cu domeniul tău de expertiză.</p>
+                <p>Asigură-te că imaginea de profil este profesională și că ai ales o <strong>Culoare de Accent</strong> potrivită domeniului tău.</p>
             </div>
         </div>
     </main>
@@ -258,29 +250,23 @@
         <p style="font-size: 0.8rem;">Creat cu ❤️ pentru comunitatea de developeri.</p>
     </footer>
 
-    <script>lucide.createIcons();</script>
     <script>
         function toggleDarkMode() {
-        const isDark = document.body.classList.toggle('dark-mode');
-        const btn = document.getElementById('theme-btn');
-        
-        // Actualizăm iconița
-        btn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-        
-        // Salvăm preferința
-        localStorage.setItem('docs_theme', isDark ? 'dark' : 'light');
-    }
-
-    // Verificăm tema la încărcare
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('docs_theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            document.getElementById('theme-btn').innerHTML = '<i data-lucide="sun"></i>';
+            const isDark = document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('theme-btn');
+            btn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
             if (typeof lucide !== 'undefined') lucide.createIcons();
+            localStorage.setItem('docs_theme', isDark ? 'dark' : 'light');
         }
-    });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('docs_theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-btn').innerHTML = '<i data-lucide="sun"></i>';
+            }
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
