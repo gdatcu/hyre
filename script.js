@@ -27,6 +27,7 @@ const defaultData = {
     design: {
         accent: "#6366f1",
         bg: "#ffffff",
+        font: "Plus Jakarta Sans", // Valoarea default
         email: "salut@numeprenume.ro",
         github: "#",
         linkedin: "#"
@@ -47,76 +48,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 3. RENDER FUNCTIONS
 function renderAll() {
-    // Titlu dinamic tab
-    document.title = `${portfolioData.general.logo} | Portofoliu`;
-
-    // --- LOGICA NOUĂ DE RANDARE LOGO ---
-    const logoContainer = document.getElementById('display-logo');
-    let logoHTML = '';
-
-    // 1. Dacă există imagine, o adăugăm prima
-    if (portfolioData.general.logoImage) {
-        logoHTML += `<img src="${portfolioData.general.logoImage}" alt="Logo profile">`;
-    }
-
-    // 2. Adăugăm întotdeauna textul după imagine
-    logoHTML += `${portfolioData.general.logo}<span>.</span>`;
-
-    logoContainer.innerHTML = logoHTML;
-    // ------------------------------------
-    document.getElementById('display-hero-badge').innerText = portfolioData.general.heroBadge;
-    const title = portfolioData.general.heroTitle;
-    document.getElementById('display-hero-title').innerHTML = title.replace("experiențe digitale", "<span>experiențe digitale</span>");
-    document.getElementById('display-hero-desc').innerText = portfolioData.general.heroDesc;
-    document.getElementById('display-cv-link').href = portfolioData.general.cvLink;
-    document.getElementById('my-form').action = `https://formspree.io/f/${portfolioData.general.formspreeId}`;
-
-    // Stil & Favicon Dinamic
-    document.documentElement.style.setProperty('--accent', portfolioData.design.accent);
-    document.documentElement.style.setProperty('--bg', portfolioData.design.bg);
+    // 1. Google Font & Title dinamic
+    const fontName = portfolioData.design.font || "Plus Jakarta Sans";
+    document.title = `${portfolioData.general.logo || "Portofoliu"} | Hyre`;
     
+    let linkTag = document.getElementById('dynamic-google-font');
+    if (!linkTag) {
+        linkTag = document.createElement('link');
+        linkTag.id = 'dynamic-google-font';
+        linkTag.rel = 'stylesheet';
+        document.head.appendChild(linkTag);
+    }
+    linkTag.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, '+')}:wght@300;400;600;800&display=swap`;
+    document.documentElement.style.setProperty('--font-main', `'${fontName}', sans-serif`);
+
+    // 2. Logo & Favicon
+    const logoContainer = document.getElementById('display-logo');
+    let logoHTML = portfolioData.general.logoImage ? `<img src="${portfolioData.general.logoImage}" alt="Logo">` : "";
+    logoHTML += `${portfolioData.general.logo || "HYRE"}<span>.</span>`;
+    logoContainer.innerHTML = logoHTML;
+
     const favicon = document.querySelector('link[rel="icon"]');
     if (favicon) {
-        const accentColor = portfolioData.design.accent.replace('#', '%23');
-        favicon.href = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='${accentColor}'></rect><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Plus Jakarta Sans, sans-serif' font-size='60' font-weight='800' fill='white'>H</text></svg>`;
+        const acc = (portfolioData.design.accent || "#6366f1").replace('#', '%23');
+        favicon.href = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='${acc}'></rect><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='60' font-weight='800' fill='white'>H</text></svg>`;
     }
 
-    // Social
-    document.getElementById('display-email').innerText = portfolioData.design.email;
-    document.getElementById('display-github').href = portfolioData.design.github;
-    document.getElementById('display-linkedin').href = portfolioData.design.linkedin;
+    // 3. Hero Section (AICI ERA EROAREA - Am adăugat verificare de siguranță)
+    const heroTitle = portfolioData.general.heroTitle || "";
+    document.getElementById('display-hero-badge').innerText = portfolioData.general.heroBadge || "";
+    document.getElementById('display-hero-title').innerHTML = heroTitle.replace("experiențe digitale", "<span>experiențe digitale</span>");
+    document.getElementById('display-hero-desc').innerText = portfolioData.general.heroDesc || "";
+    document.getElementById('display-cv-link').href = portfolioData.general.cvLink || "#";
 
-    // Stack
-    const stackContainer = document.getElementById('display-stack');
-    let stackHTML = '';
-    [...portfolioData.stack, ...portfolioData.stack].forEach(item => {
-        const isDevicon = item.icon.includes('devicon');
-        stackHTML += `<div class="tech-card">${isDevicon ? `<i class="${item.icon}"></i>` : `<img src="${item.icon}" alt="${item.name}">`}<span>${item.name}</span></div>`;
-    });
-    stackContainer.innerHTML = stackHTML;
+    // 4. Stiluri Globale
+    document.documentElement.style.setProperty('--accent', portfolioData.design.accent);
+    document.documentElement.style.setProperty('--bg', portfolioData.design.bg);
 
-    // Experience
-    const expContainer = document.getElementById('display-experience');
-    expContainer.innerHTML = portfolioData.experience.map(item => `
-        <div class="timeline-item" data-year="${item.year}">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">${item.date}</div>
-            <div class="timeline-content">
-                <div class="timeline-header"><i data-lucide="${item.icon}"></i><h3>${item.title}</h3></div>
-                <h4>${item.company}</h4><p>${item.desc}</p>
-            </div>
-        </div>
+    // 5. Randare Liste & Social (Stack, Exp, Proiecte)
+    document.getElementById('display-stack').innerHTML = [...(portfolioData.stack || []), ...(portfolioData.stack || [])].map(item => `
+        <div class="tech-card">${item.icon.includes('http') || item.icon.includes('data:') ? `<img src="${item.icon}">` : `<i class="${item.icon}"></i>`}<span>${item.name}</span></div>
     `).join('');
 
-    // Projects
-    const projContainer = document.getElementById('display-projects');
-    projContainer.innerHTML = portfolioData.projects.map(p => `
-        <div class="bento-item ${p.size}">
-            <div class="bento-content">
-                <div class="badge">${p.badge}</div><h3>${p.title}</h3><p>${p.desc}</p>
-                <div class="bento-tags">${p.tags.split(',').map(t => `<span>${t.trim()}</span>`).join('')}</div>
-            </div>
-        </div>
+    document.getElementById('display-experience').innerHTML = (portfolioData.experience || []).map(item => `
+        <div class="timeline-item" data-year="${item.year}"><div class="timeline-dot"></div><div class="timeline-date">${item.date}</div><div class="timeline-content"><div class="timeline-header"><i data-lucide="${item.icon}"></i><h3>${item.title}</h3></div><h4>${item.company}</h4><p>${item.desc}</p></div></div>
+    `).join('');
+
+    document.getElementById('display-projects').innerHTML = (portfolioData.projects || []).map(p => `
+        <div class="bento-item ${p.size}"><div class="bento-content"><div class="badge">${p.badge}</div><h3>${p.title}</h3><p>${p.desc}</p><div class="bento-tags">${p.tags.split(',').map(t => `<span>${t.trim()}</span>`).join('')}</div></div></div>
     `).join('');
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -129,25 +108,51 @@ function initEditor() {
     const toggleBtn = document.getElementById('toggle-editor');
     const closeBtn = document.getElementById('close-editor');
 
-    toggleBtn?.addEventListener('click', () => sidebar.classList.toggle('active'));
-    closeBtn?.addEventListener('click', () => sidebar.classList.remove('active'));
+    // Control deschidere sidebar
+    if (toggleBtn) toggleBtn.onclick = () => sidebar.classList.toggle('active');
+    if (closeBtn) closeBtn.onclick = () => sidebar.classList.remove('active');
 
+    // Logica de schimbare a tab-urilor
     document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = () => {
             document.querySelectorAll('.tab-btn, .tab-pane').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
-            document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
-        });
+            const pane = document.getElementById(`tab-${btn.dataset.tab}`);
+            if (pane) pane.classList.add('active');
+        };
     });
 
+    // Legarea automată a câmpurilor simple (Text, Culoare, Textarea)
     const bindings = [
-        ['edit-logo', 'general', 'logo'], ['edit-hero-badge', 'general', 'heroBadge'],
-        ['edit-hero-title', 'general', 'heroTitle'], ['edit-hero-desc', 'general', 'heroDesc'],
-        ['edit-cv-link', 'general', 'cvLink'], ['edit-formspree', 'general', 'formspreeId'],
-        ['edit-color-accent', 'design', 'accent'], ['edit-color-bg', 'design', 'bg'],
-        ['edit-email', 'design', 'email'], ['edit-github', 'design', 'github'], ['edit-linkedin', 'design', 'linkedin']
+        ['edit-logo', 'general', 'logo'],
+        ['edit-hero-badge', 'general', 'heroBadge'],
+        ['edit-hero-title', 'general', 'heroTitle'],
+        ['edit-hero-desc', 'general', 'heroDesc'],
+        ['edit-cv-link', 'general', 'cvLink'],
+        ['edit-formspree', 'general', 'formspreeId'],
+        ['edit-color-accent', 'design', 'accent'],
+        ['edit-color-bg', 'design', 'bg'],
+        ['edit-email', 'design', 'email'],
+        ['edit-github', 'design', 'github'],
+        ['edit-linkedin', 'design', 'linkedin']
     ];
-    bindings.forEach(b => bindInput(b[0], b[1], b[2]));
+
+    bindings.forEach(([id, section, key]) => {
+        const el = document.getElementById(id);
+        if (el && portfolioData[section]) {
+            el.value = portfolioData[section][key] || "";
+            el.oninput = (e) => {
+                portfolioData[section][key] = e.target.value;
+                renderAll();
+            };
+        }
+    });
+
+    // Font selector
+    const fontSelect = document.getElementById('edit-font');
+    if (fontSelect) fontSelect.value = portfolioData.design.font || "Plus Jakarta Sans";
+
+    // Randăm listele pentru Tehnologii, Experiență și Proiecte
     renderEditorLists();
 }
 
@@ -311,4 +316,9 @@ function handleLogoUpload(input) {
         };
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function updateFont(val) {
+    portfolioData.design.font = val;
+    renderAll();
 }
