@@ -5,6 +5,9 @@ const defaultData = {
     general: {
         logo: "HYRE",
         logoImage: "",
+        metaTitle: "",
+        metaDescription: "",
+        ogImage: "",
         heroBadge: "Disponibil pentru proiecte noi",
         heroTitle: "Transform idei în experiențe digitale memorabile.",
         heroDesc: "Sunt un Junior Developer axat pe detalii, performanță și un design care contează. Îmbin estetica cu funcționalitatea.",
@@ -171,7 +174,9 @@ function initEditor() {
         ['edit-color-bg', 'design', 'bg'],
         ['edit-email', 'design', 'email'],
         ['edit-github', 'design', 'github'],
-        ['edit-linkedin', 'design', 'linkedin']
+        ['edit-linkedin', 'design', 'linkedin'],
+        ['edit-meta-title', 'general', 'metaTitle'],
+        ['edit-meta-desc', 'general', 'metaDescription']
     ];
 
     bindings.forEach(([id, section, key]) => {
@@ -305,50 +310,54 @@ function resetData() {
 }
 
 // 7. EXPORT HTML
-async function exportHTML() {
-    let cssContent = "";
-    try {
-        const response = await fetch('style.css');
-        cssContent = await response.text();
-    } catch (e) { alert("Eroare stiluri. Rulează pe un server local."); return; }
+function exportHTML() {
+    // 1. Clonăm documentul actual pentru a nu strica vizualizarea live
+    const fullHTML = document.documentElement.outerHTML;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(fullHTML, 'text/html');
 
-    const clone = document.documentElement.cloneNode(true);
-    clone.querySelector('#editor-sidebar')?.remove();
-    clone.querySelector('#toggle-editor')?.remove();
-    clone.querySelector('script[src="script.js"]')?.remove();
-    clone.querySelector('link[href="style.css"]')?.remove();
+    // 2. Eliminăm elementele specifice editorului care nu trebuie să apară pe site-ul final
+    const sidebar = doc.getElementById('editor-sidebar');
+    const trigger = doc.getElementById('toggle-editor');
+    if (sidebar) sidebar.remove();
+    if (trigger) trigger.remove();
 
-    const styleTag = document.createElement('style');
-    styleTag.textContent = cssContent;
-    clone.querySelector('head').appendChild(styleTag);
+    // 3. Pregătim datele SEO
+    const seoTitle = portfolioData.general.metaTitle || (portfolioData.general.logo + " | Portofoliu");
+    const seoDesc = portfolioData.general.metaDescription || "";
+    const ogImg = portfolioData.general.ogImage || "";
 
-    const finalScript = document.createElement('script');
-    finalScript.textContent = `
-        const portfolioData = ${JSON.stringify(portfolioData, null, 4)};
-        document.addEventListener('DOMContentLoaded', () => {
-            renderAll();
-            // Smooth Scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) target.scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-        });
-        ${renderAll.toString()}
-        function copyEmail() {
-            const email = portfolioData.design.email;
-            navigator.clipboard.writeText(email).then(() => alert("Email copiat!"));
-        }
+    // 4. Actualizăm <title> și injectăm Meta Tag-urile în <head>
+    let head = doc.head;
+    
+    // Setăm titlul paginii
+    const existingTitle = doc.querySelector('title');
+    if (existingTitle) {
+        existingTitle.innerText = seoTitle;
+    }
+
+    // Injectăm tag-urile meta pentru SEO și LinkedIn
+    const seoTags = `
+        <meta name="description" content="${seoDesc}">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="${seoTitle}">
+        <meta property="og:description" content="${seoDesc}">
+        <meta property="og:image" content="${ogImg}">
+        <meta name="twitter:card" content="summary_large_image">
     `;
-    clone.querySelector('body').appendChild(finalScript);
 
-    const blob = new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: 'text/html' });
+    head.insertAdjacentHTML('beforeend', seoTags);
+
+    // 5. Generăm fișierul și declanșăm descărcarea
+    const blob = new Blob([doc.documentElement.outerHTML], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
+    a.href = url;
     a.download = 'index.html';
     a.click();
+    
+    // Curățăm URL-ul creat
+    URL.revokeObjectURL(url);
 }
 
 function copyEmail() {
@@ -426,4 +435,16 @@ function copyHyreLink() {
         txt.innerText = "Copiat! ✅";
         setTimeout(() => { txt.innerText = "Copiază Link"; }, 2000);
     });
+}
+
+// Funcție nouă pentru imaginea Open Graph
+function handleOGImageUpload(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            portfolioData.general.ogImage = e.target.result; // Salvare ca Base64
+            renderAll();
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }

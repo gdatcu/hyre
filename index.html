@@ -53,6 +53,24 @@
                     <div class="field-group"><label>Descriere Hero</label><textarea id="edit-hero-desc"></textarea></div>
                     <div class="field-group"><label>Link URL către CV</label><input type="text" id="edit-cv-link"></div>
                     <div class="field-group"><label>Formspree ID</label><input type="text" id="edit-formspree"></div>
+                    
+                    <div class="field-group" style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px;">
+                        <label style="font-weight: 800; color: var(--accent);">🔍 Setări SEO & Social Media</label>
+                    </div>
+                    <div class="field-group">
+                        <label>Titlu SEO (Apare în Google & Tab)</label>
+                        <input type="text" id="edit-meta-title" placeholder="Ex: George Datcu | Senior QA Automation">
+                    </div>
+                    <div class="field-group">
+                        <label>Descriere Meta (Rezumat pentru Google/LinkedIn)</label>
+                        <textarea id="edit-meta-desc" placeholder="Ex: Expert în testare automată cu peste 5 ani experiență..."></textarea>
+                    </div>
+                    <div class="field-group">
+                        <label>Imagine Preview Social (Open Graph)</label>
+                        <input type="file" id="edit-og-image" accept="image/*" onchange="handleOGImageUpload(this)">
+                        <small style="color: var(--text-soft); font-size: 0.75rem;">Această imagine va apărea când postezi link-ul pe LinkedIn.</small>
+                    </div>
+
                 </div>
 
                 <div id="tab-share" class="tab-pane">
