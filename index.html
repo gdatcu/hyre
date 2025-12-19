@@ -28,69 +28,70 @@
     <aside id="editor-sidebar" class="editor-sidebar">
         <div class="editor-sidebar-inner">
             <div class="editor-header">
-                <h2>Hyre Dashboard</h2>
+                <h2 id="db-title">Hyre Dashboard</h2>
                 <button id="close-editor" class="close-btn"><i data-lucide="x"></i></button>
             </div>
 
             <nav class="editor-tabs">
-                <button class="tab-btn active" data-tab="general">Info</button>
-                <button class="tab-btn" data-tab="share" style="color: var(--accent); font-weight: 800;">🚀 Share</button>
-                <button class="tab-btn" data-tab="stack">Tech</button>
-                <button class="tab-btn" data-tab="experience">Parcurs</button>
-                <button class="tab-btn" data-tab="projects">Proiecte</button>
-                <button class="tab-btn" data-tab="design">Stil</button>
+                <button class="tab-btn active" data-tab="general" id="tab-info">Info</button>
+                <button class="tab-btn" data-tab="share" id="tab-share-txt" style="color: var(--accent); font-weight: 800;">🚀 Share</button>
+                <button class="tab-btn" data-tab="stack" id="tab-tech-txt">Tech</button>
+                <button class="tab-btn" data-tab="experience" id="tab-exp-txt">Parcurs</button>
+                <button class="tab-btn" data-tab="projects" id="tab-proj-txt">Proiecte</button>
+                <button class="tab-btn" data-tab="design" id="tab-design-txt">Stil</button>
             </nav>
 
             <div class="editor-body">
                 <div id="tab-general" class="tab-pane active">
                     <div class="field-group">
-                        <label>Logo Imagine (Opțional)</label>
+                        <label id="lbl-logo-img">Logo Imagine (Opțional)</label>
                         <input type="file" id="edit-logo-file" accept="image/*" onchange="handleLogoUpload(this)">
-                        <small style="color: #666; font-size: 0.8em;">Va fi afișată rotundă lângă text.</small>
+                        <small id="sm-logo-img" style="color: #666; font-size: 0.8em;">Va fi afișată rotundă lângă text.</small>
                     </div>
 
                     <div class="field-group">
-                        <label>Logo Text / Nume</label>
+                        <label id="lbl-logo-txt">Logo Text / Nume</label>
                         <input type="text" id="edit-logo">
                     </div>
 
                     <div class="field-group">
-                        <label>Favicon (Imagine Tab Browser)</label>
+                        <label id="lbl-favicon">Favicon (Imagine Tab Browser)</label>
                         <input type="file" id="edit-favicon-file" accept="image/*" onchange="handleFaviconUpload(this)">
-                        <small style="color: var(--text-soft); font-size: 0.75rem;">Încarcă un fișier .png sau .ico (recomandat 32x32px).</small>
+                        <small id="sm-favicon" style="color: var(--text-soft); font-size: 0.75rem;">Încarcă un fișier .png sau .ico (recomandat 32x32px).</small>
                     </div>
 
-                    <div class="field-group"><label>Badge Disponibilitate</label><input type="text" id="edit-hero-badge"></div>
-                    <div class="field-group"><label>Titlu Principal</label><input type="text" id="edit-hero-title"></div>
-                    <div class="field-group"><label>Descriere Hero</label><textarea id="edit-hero-desc"></textarea></div>
-                    <div class="field-group"><label>Link URL către CV</label><input type="text" id="edit-cv-link"></div>
-                    <div class="field-group"><label>Formspree ID</label><input type="text" id="edit-formspree"></div>
+                    <div class="field-group"><label id="lbl-badge">Badge Disponibilitate</label><input type="text" id="edit-hero-badge"></div>
+                    <div class="field-group"><label id="lbl-hero-title">Titlu Principal</label><input type="text" id="edit-hero-title"></div>
+                    <div class="field-group"><label id="lbl-hero-desc">Descriere Hero</label><textarea id="edit-hero-desc"></textarea></div>
+                    <div class="field-group"><label id="lbl-cv-url">Link URL către CV</label><input type="text" id="edit-cv-link"></div>
+                    <div class="field-group"><label id="lbl-formspree">Formspree ID</label><input type="text" id="edit-formspree"></div>
                     
                     <div class="field-group" style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px;">
-                        <label style="font-weight: 800; color: var(--accent);">🔍 Setări SEO & Social Media</label>
+                        <label id="lbl-seo-header" style="font-weight: 800; color: var(--accent);">🔍 Setări SEO & Social Media</label>
                     </div>
                     <div class="field-group">
-                        <label>Titlu SEO</label>
+                        <label id="lbl-meta-title">Titlu SEO</label>
                         <input type="text" id="edit-meta-title" placeholder="Nume | Rol | Portofoliu">
-                        <small id="meta-title-hint" style="font-size: 0.7rem; font-weight: 600;"></small> </div>
+                        <small id="meta-title-hint" style="font-size: 0.7rem; font-weight: 600;"></small> 
+                    </div>
 
                     <div class="field-group">
-                        <label>Descriere Meta</label>
+                        <label id="lbl-meta-desc">Descriere Meta</label>
                         <textarea id="edit-meta-desc" placeholder="O scurtă descriere despre tine..."></textarea>
                         <small id="meta-desc-hint" style="font-size: 0.7rem; font-weight: 600;"></small>
                     </div>
                     <div class="field-group">
-                        <label>Imagine Preview Social (Open Graph)</label>
+                        <label id="lbl-og-img">Imagine Preview Social (Open Graph)</label>
                         <input type="file" id="edit-og-image" accept="image/*" onchange="handleOGImageUpload(this)">
-                        <small style="color: var(--text-soft); font-size: 0.75rem;">Această imagine va apărea când postezi link-ul pe LinkedIn.</small>
+                        <small id="sm-og-img" style="color: var(--text-soft); font-size: 0.75rem;">Această imagine va apărea când postezi link-ul pe LinkedIn.</small>
                     </div>
 
                 </div>
 
                 <div id="tab-share" class="tab-pane">
                     <div class="field-group">
-                        <label>Îți place Hyre? Recomandă-l!</label>
-                        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">Ajută și alți developeri să își construiască un portofoliu Senior Grade.</p>
+                        <label id="lbl-share-title">Îți place Hyre? Recomandă-l!</label>
+                        <p id="sm-share-desc" style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">Ajută și alți developeri să își construiască un portofoliu Senior Grade.</p>
                     </div>
                     
                     <div class="share-sidebar-grid">
@@ -108,22 +109,22 @@
 
                 <div id="tab-stack" class="tab-pane">
                     <div id="stack-editor-list"></div>
-                    <button onclick="addStackField()" class="add-item-btn">+ Tehnologie</button>
+                    <button onclick="addStackField()" id="btn-add-tech" class="add-item-btn">+ Tehnologie</button>
                 </div>
 
                 <div id="tab-experience" class="tab-pane">
                     <div id="exp-editor-list"></div>
-                    <button onclick="addExperienceField()" class="add-item-btn">+ Etapă</button>
+                    <button onclick="addExperienceField()" id="btn-add-exp" class="add-item-btn">+ Etapă</button>
                 </div>
 
                 <div id="tab-projects" class="tab-pane">
                     <div id="project-editor-list"></div>
-                    <button onclick="addProjectField()" class="add-item-btn">+ Proiect</button>
+                    <button onclick="addProjectField()" id="btn-add-proj" class="add-item-btn">+ Proiect</button>
                 </div>
 
                 <div id="tab-design" class="tab-pane">
                     <div class="field-group">
-                        <label>Font Principal</label>
+                        <label id="lbl-font">Font Principal</label>
                         <select id="edit-font" onchange="updateFont(this.value)">
                             <option value="Plus Jakarta Sans">Plus Jakarta Sans (Modern)</option>
                             <option value="Inter">Inter (Minimalist)</option>
@@ -133,32 +134,32 @@
                         </select>
                     </div>
                     <div class="field-group">
-                        <label>Ordine Secțiuni</label>
+                        <label id="lbl-order">Ordine Secțiuni</label>
                         <select id="edit-layout-order" onchange="updateLayoutOrder(this.value)">
                             <option value="experience,projects,stack">Parcurs > Proiecte > Tech</option>
                             <option value="projects,experience,stack">Proiecte > Parcurs > Tech</option>
                             <option value="projects,stack,experience">Proiecte > Tech > Parcurs</option>
                         </select>
                     </div>
-                    <div class="field-group"><label>Culoare Accent</label><input type="color" id="edit-color-accent"></div>
-                    <div class="field-group"><label>Culoare Fundal</label><input type="color" id="edit-color-bg"></div>
-                    <div class="field-group"><label>Email Contact</label><input type="text" id="edit-email"></div>
-                    <div class="field-group"><label>GitHub URL</label><input type="text" id="edit-github"></div>
-                    <div class="field-group"><label>LinkedIn URL</label><input type="text" id="edit-linkedin"></div>
+                    <div class="field-group"><label id="lbl-accent">Culoare Accent</label><input type="color" id="edit-color-accent"></div>
+                    <div class="field-group"><label id="lbl-bg-color">Culoare Fundal</label><input type="color" id="edit-color-bg"></div>
+                    <div class="field-group"><label id="lbl-email-fld">Email Contact</label><input type="text" id="edit-email"></div>
+                    <div class="field-group"><label id="lbl-github-fld">GitHub URL</label><input type="text" id="edit-github"></div>
+                    <div class="field-group"><label id="lbl-linkedin-fld">LinkedIn URL</label><input type="text" id="edit-linkedin"></div>
                 </div>
             </div>
 
             <div class="editor-footer">
-                <a href="docs.html" target="_blank" class="btn-small" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; background: #f4f4f5;">
+                <a href="docs.html" target="_blank" class="btn-small" id="btn-docs" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; background: #f4f4f5;">
                     <i data-lucide="book-open"></i> Ghid de Lansare
                 </a>
-                <button onclick="togglePreviewMode()" class="btn-small" style="width: 100%; margin-bottom: 8px; background: #e0e7ff; color: #4338ca; border: none; cursor: pointer; padding: 10px; border-radius: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <button onclick="togglePreviewMode()" class="btn-small" id="btn-preview" style="width: 100%; margin-bottom: 8px; background: #e0e7ff; color: #4338ca; border: none; cursor: pointer; padding: 10px; border-radius: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <i data-lucide="eye"></i> Preview Mode
                 </button>
-                <button onclick="exportHTML()" class="export-btn">
+                <button onclick="exportHTML()" class="export-btn" id="btn-export">
                     <i data-lucide="download"></i> Exportă index.html
                 </button>
-                <button onclick="resetData()" class="btn-small" style="margin-top: 12px; width: 100%; border: none; background: #fee2e2; color: #b91c1c; cursor: pointer; padding: 10px; border-radius: 8px; font-weight: 700;">
+                <button onclick="resetData()" class="btn-small" id="btn-reset" style="margin-top: 12px; width: 100%; border: none; background: #fee2e2; color: #b91c1c; cursor: pointer; padding: 10px; border-radius: 8px; font-weight: 700;">
                     Resetează Progresul
                 </button>
             </div>
@@ -168,10 +169,18 @@
     <nav class="main-nav">
         <div class="nav-container">
             <div class="logo" id="display-logo">HYRE<span>.</span></div>
+            
+            <div class="lang-selector-main">
+                <input type="radio" name="site-lang" value="ro" id="lang-ro" checked onchange="updateLanguage('ro')">
+                <label for="lang-ro">RO</label>
+                <input type="radio" name="site-lang" value="en" id="lang-en" onchange="updateLanguage('en')">
+                <label for="lang-en">EN</label>
+            </div>
+
             <ul class="nav-menu">
-                <li><a href="#projects">Proiecte</a></li>
-                <li><a href="#stack">Tehnologii</a></li>
-                <li><a href="#contact" class="cta-nav">Contact</a></li>
+                <li><a href="#projects" id="nav-link-projects">Proiecte</a></li>
+                <li><a href="#stack" id="nav-link-stack">Tehnologii</a></li>
+                <li><a href="#contact" class="cta-nav" id="nav-link-contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -182,7 +191,7 @@
             <h1 id="display-hero-title">Se incarca...</h1>
             <p id="display-hero-desc">...</p>
             <div class="hero-actions">
-                <a href="#projects" class="btn btn-main">Explorează Proiectele</a>
+                <a href="#projects" class="btn btn-main" id="hero-btn-explore">Explorează Proiectele</a>
                 <a href="#" id="display-cv-link" class="btn btn-outline" target="_blank">Descarcă CV <i data-lucide="download"></i></a>
             </div>
         </section>
@@ -195,39 +204,39 @@
 
         <section id="experience">
             <div class="section-title">
-                <span>Parcursul meu</span>
-                <h2>Experiență & Educație</h2>
+                <span id="sec-exp-span">Parcursul meu</span>
+                <h2 id="sec-exp-h2">Experiență & Educație</h2>
             </div>
             <div class="timeline" id="display-experience"></div>
         </section>
 
         <section id="projects">
             <div class="section-title">
-                <span>Portofoliu</span>
-                <h2>Proiecte Selectate</h2>
+                <span id="sec-proj-span">Portofoliu</span>
+                <h2 id="sec-proj-h2">Proiecte Selectate</h2>
             </div>
             <div class="bento-grid" id="display-projects"></div>
         </section>
 
         <section id="contact">
             <div class="section-title">
-                <span>Contact</span>
-                <h2>Hai să discutăm</h2>
+                <span id="sec-contact-span">Contact</span>
+                <h2 id="sec-contact-h2">Hai să discutăm</h2>
             </div>
             <div class="contact-bento">
                 <div class="contact-form-container">
                     <form action="" method="POST" id="my-form">
                         <div class="input-group">
-                            <label>Numele tău</label>
-                            <input type="text" name="name" placeholder="Ex: Ion Popescu" required>
+                            <label id="label-name">Numele tău</label>
+                            <input type="text" id="input-name" name="name" placeholder="Ex: Ion Popescu" required>
                         </div>
                         <div class="input-group">
-                            <label>Email</label>
-                            <input type="email" name="email" placeholder="ion@exemplu.ro" required>
+                            <label id="label-email">Email</label>
+                            <input type="email" id="input-email" name="email" placeholder="ion@exemplu.ro" required>
                         </div>
                         <div class="input-group">
-                            <label>Mesaj</label>
-                            <textarea name="message" placeholder="Spune-mi despre proiectul tău..." required></textarea>
+                            <label id="label-message">Mesaj</label>
+                            <textarea id="input-message" name="message" placeholder="Spune-mi despre proiectul tău..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-main w-full" id="submit-btn">
                             Trimite Mesajul <i data-lucide="send"></i>
@@ -239,7 +248,7 @@
                     <div class="detail-card">
                         <i data-lucide="mail"></i>
                         <div>
-                            <p>Scrie-mi direct</p>
+                            <p id="contact-direct-txt">Scrie-mi direct</p>
                             <strong id="display-email">salut@numeprenume.ro</strong>
                         </div>
                         <button onclick="copyEmail()" class="copy-small"><i data-lucide="copy"></i></button>
